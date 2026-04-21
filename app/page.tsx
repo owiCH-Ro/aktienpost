@@ -17,6 +17,8 @@ type Strategy = {
   maxDd: string;
   benchDd: string;
   description: string;
+  /** Simplified 10-year equity curve for the decorative sparkline. */
+  sparkline: number[];
 };
 
 const STRATEGIES: Strategy[] = [
@@ -31,6 +33,7 @@ const STRATEGIES: Strategy[] = [
     benchDd: "-26.9%",
     description:
       "Für Anleger, die den Schweizer Markt aktiv, aber diszipliniert begleiten wollen.",
+    sparkline: [100, 120, 155, 165, 205, 180, 235, 268, 255, 272, 340, 450],
   },
   {
     slug: "spi-defensiv",
@@ -43,6 +46,7 @@ const STRATEGIES: Strategy[] = [
     benchDd: "-17%",
     description:
       "Für vorsichtigere Anleger mit Fokus auf kleinere Rückschläge und ruhigeres Investieren.",
+    sparkline: [100, 110, 130, 140, 155, 150, 175, 195, 190, 200, 240, 290],
   },
   {
     slug: "us-tech",
@@ -55,6 +59,7 @@ const STRATEGIES: Strategy[] = [
     benchDd: "-35.6%",
     description:
       "Für Anleger, die Wachstum suchen, aber nicht jedem Trend blind hinterherlaufen wollen.",
+    sparkline: [100, 150, 200, 170, 280, 350, 420, 380, 350, 450, 650, 960],
   },
   {
     slug: "europa-breakout",
@@ -67,6 +72,7 @@ const STRATEGIES: Strategy[] = [
     benchDd: "-38.8%",
     description:
       "Für breit interessierte Anleger mit Blick auf Chancen jenseits der Schweiz.",
+    sparkline: [100, 140, 180, 165, 220, 200, 280, 320, 300, 380, 550, 830],
   },
 ];
 
@@ -241,7 +247,7 @@ function PerformanceCards() {
         </div>
 
         <div className="mt-14 grid gap-5 md:grid-cols-2">
-          {STRATEGIES.map((s, i) => (
+          {STRATEGIES.map((s) => (
             <article
               key={s.slug}
               className="relative flex flex-col justify-between overflow-hidden rounded-xl border border-line bg-white p-7 shadow-[0_1px_2px_rgba(15,23,42,0.04)]"
@@ -269,7 +275,7 @@ function PerformanceCards() {
                 <span className="text-xs uppercase tracking-[0.2em] text-secondary">
                   {s.pa}
                 </span>
-                <Sparkline seed={i} className="h-10 w-28" />
+                <Sparkline data={s.sparkline} className="h-10 w-28" />
               </div>
             </article>
           ))}
@@ -420,10 +426,9 @@ function Pricing() {
       monthly: "49",
       yearly: "490",
       features: [
-        "1 Strategie Ihrer Wahl",
+        "Alle 4 Strategien",
         "E-Mail-Signale (nach Börsenschluss)",
-        "Performance-Dashboard",
-        "Historische Backtests",
+        "Performance-Übersicht YTD–10J",
       ],
       cta: "Basis wählen",
       featured: false,
@@ -433,11 +438,10 @@ function Pricing() {
       monthly: "99",
       yearly: "990",
       features: [
-        "Alle 4 Strategien",
-        "E-Mail-Signale (nach Börsenschluss)",
-        "Performance-Dashboard",
-        "Historische Backtests",
-        "Monatlicher Marktkommentar",
+        "Alles aus Basis",
+        "Online-Dashboard mit Charts",
+        "Fundamentaldaten je Signal (KGV, Dividende)",
+        "Wöchentlicher Marktkommentar",
       ],
       cta: "Plus wählen",
       featured: true,
@@ -447,12 +451,10 @@ function Pricing() {
       monthly: "149",
       yearly: "1'490",
       features: [
-        "Alle 4 Strategien",
-        "Signale in Echtzeit (Push & E-Mail)",
-        "Performance-Dashboard",
-        "Historische Backtests",
-        "Monatlicher Marktkommentar",
-        "Persönlicher Support per E-Mail",
+        "Alles aus Plus",
+        "Quartals-Markteinschätzung",
+        "Prioritäts-Support per E-Mail",
+        "Experimentelle Strategien",
       ],
       cta: "Premium wählen",
       featured: false,
@@ -591,9 +593,6 @@ function FinalCta() {
             Jetzt starten — ab CHF 49 / Monat
           </a>
         </div>
-        <p className="mt-6 text-xs text-cream/40">
-          Bereits über 100 Schweizer Anleger vertrauen aktienpost.ch
-        </p>
       </div>
     </section>
   );

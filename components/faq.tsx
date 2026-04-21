@@ -14,11 +14,11 @@ const ITEMS: Item[] = [
   },
   {
     q: "Wie oft muss ich handeln?",
-    a: "Je nach Strategie zwischen drei- und zwölfmal pro Jahr. Pro Signal rechnen wir mit rund fünf Minuten für die Order-Eingabe bei Ihrer Bank. Ein monatliches Rebalancing bei der LowVol-Strategie lässt sich ebenfalls in unter zehn Minuten umsetzen.",
+    a: "Je nach Strategie zwischen 8 und 12 Mal pro Jahr — also etwa alle 4 bis 6 Wochen. Pro Signal rechnen Sie mit rund 5 Minuten für die Order-Eingabe bei Ihrer Bank. Die defensive Strategie (SPI Defensiv) erfordert nur 4 Anpassungen pro Jahr.",
   },
   {
     q: "Kann ich jede Bank nutzen?",
-    a: "Ja. Sie benötigen lediglich ein Handelskonto mit Zugang zur Schweizer Börse (SIX) und — je nach Strategie — zu internationalen Börsen (NYSE/Nasdaq, Xetra, Hongkong, Tokyo). Die Strategien sind kompatibel mit allen etablierten Schweizer Banken und Online-Brokern.",
+    a: "Ja. Sie benötigen lediglich ein Wertschriftendepot bei einer Schweizer Bank oder einem Online-Broker (z.B. Swissquote, PostFinance). Für die internationalen Strategien brauchen Sie Zugang zur US-Börse (Nasdaq) und zur deutschen Börse (Xetra) — die meisten Schweizer Broker bieten dies standardmässig an.",
   },
   {
     q: "Ist das Anlageberatung?",

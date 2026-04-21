@@ -1,29 +1,75 @@
-/** Tiny decorative SVG sparkline — one gold curve, no axes. */
+/** Tiny mini equity curve. Takes an array of values (monotonic time axis,
+ * no dates needed) and draws a thin gold line scaled to fit the viewBox.
+ * No axes, no labels — purely decorative but faithful to the real curve.
+ *
+ * Pure SVG (no Recharts) so it stays featherweight — 4 of these render in
+ * the Performance grid and we don't want 4× ResponsiveContainers just for
+ * decoration. */
 export function Sparkline({
+  data,
   className = "",
-  seed = 0,
 }: {
+  data: number[];
   className?: string;
-  seed?: number;
 }) {
-  // Four pre-baked paths so each card shows a slightly different shape.
-  const paths = [
-    "M0,42 C18,40 28,34 40,30 C52,26 62,22 74,18 C86,14 96,10 110,6 C120,4 128,3 140,2",
-    "M0,44 C14,42 24,30 36,26 C48,22 58,24 72,20 C84,16 96,10 108,8 C120,6 130,4 140,2",
-    "M0,46 C16,44 24,32 38,28 C50,24 60,30 72,22 C84,18 94,12 108,8 C122,4 132,3 140,2",
-    "M0,40 C16,38 28,34 42,28 C52,24 62,22 76,18 C90,14 100,10 112,6 C122,4 132,3 140,2",
-  ];
-  const d = paths[seed % paths.length];
+  if (!data || data.length < 2) return null;
+
+  const width = 140;
+  const height = 48;
+  const padTop = 3;
+  const padBottom = 3;
+
+  const min = Math.min(...data);
+  const max = Math.max(...data);
+  const range = max - min || 1;
+  const plotH = height - padTop - padBottom;
+
+  const points = data.map((v, i) => {
+    const x = (i / (data.length - 1)) * width;
+    const y = padTop + plotH - ((v - min) / range) * plotH;
+    return [x, y] as const;
+  });
+
+  // Build a smooth path via centripetal Catmull-Rom → cubic Bézier so the
+  // line curves through every data point without the harsh corners a
+  // pure polyline would give.
+  const d = catmullRomPath(points);
+
   return (
     <svg
-      viewBox="0 0 140 48"
+      viewBox={`0 0 ${width} ${height}`}
       className={className}
       fill="none"
       stroke="#c5973e"
       strokeWidth="2"
       strokeLinecap="round"
+      strokeLinejoin="round"
+      aria-hidden
     >
       <path d={d} />
     </svg>
   );
+}
+
+function catmullRomPath(points: ReadonlyArray<readonly [number, number]>): string {
+  if (points.length === 0) return "";
+  const [x0, y0] = points[0];
+  if (points.length === 1) return `M${x0},${y0}`;
+
+  let d = `M${x0},${y0}`;
+  for (let i = 0; i < points.length - 1; i++) {
+    const p0 = points[i - 1] ?? points[i];
+    const p1 = points[i];
+    const p2 = points[i + 1];
+    const p3 = points[i + 2] ?? points[i + 1];
+
+    // Standard Catmull-Rom → cubic conversion (tension = 0.5).
+    const c1x = p1[0] + (p2[0] - p0[0]) / 6;
+    const c1y = p1[1] + (p2[1] - p0[1]) / 6;
+    const c2x = p2[0] - (p3[0] - p1[0]) / 6;
+    const c2y = p2[1] - (p3[1] - p1[1]) / 6;
+
+    d += ` C${c1x.toFixed(2)},${c1y.toFixed(2)} ${c2x.toFixed(2)},${c2y.toFixed(2)} ${p2[0].toFixed(2)},${p2[1].toFixed(2)}`;
+  }
+  return d;
 }
