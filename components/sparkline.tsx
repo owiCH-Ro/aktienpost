@@ -1,10 +1,12 @@
-/** Tiny mini equity curve. Takes an array of values (monotonic time axis,
- * no dates needed) and draws a thin gold line scaled to fit the viewBox.
- * No axes, no labels — purely decorative but faithful to the real curve.
+/** Full-width mini equity curve used as a watermark-style background in
+ * the performance cards. Takes an array of values, scales it to its
+ * container (`preserveAspectRatio="none"` so it fills width AND height),
+ * and draws a thin gold line with a soft gradient fill underneath.
  *
- * Pure SVG (no Recharts) so it stays featherweight — 4 of these render in
- * the Performance grid and we don't want 4× ResponsiveContainers just for
- * decoration. */
+ * Pure SVG (no Recharts) so it stays featherweight — four of these
+ * render in the Performance grid and we don't need a ResponsiveContainer
+ * for each one.
+ */
 export function Sparkline({
   data,
   className = "",
@@ -14,10 +16,12 @@ export function Sparkline({
 }) {
   if (!data || data.length < 2) return null;
 
-  const width = 140;
-  const height = 48;
-  const padTop = 3;
-  const padBottom = 3;
+  // Internal viewBox coordinates. We don't care about absolute pixels —
+  // preserveAspectRatio="none" stretches this to fill the container.
+  const width = 200;
+  const height = 80;
+  const padTop = 4;
+  const padBottom = 2;
 
   const min = Math.min(...data);
   const max = Math.max(...data);
@@ -30,23 +34,40 @@ export function Sparkline({
     return [x, y] as const;
   });
 
-  // Build a smooth path via centripetal Catmull-Rom → cubic Bézier so the
-  // line curves through every data point without the harsh corners a
-  // pure polyline would give.
-  const d = catmullRomPath(points);
+  // Smooth Catmull-Rom → cubic Bézier path for the visible line.
+  const linePath = catmullRomPath(points);
+  // Closed path for the fill: same line, then down to the baseline and back.
+  const fillPath = `${linePath} L${width},${height} L0,${height} Z`;
+
+  // Unique gradient id per instance — multiple sparklines on one page
+  // otherwise share a single <linearGradient> and browsers get confused
+  // about which one is in scope.
+  const gradientId = `sparkline-fill-${Math.random().toString(36).slice(2, 9)}`;
 
   return (
     <svg
       viewBox={`0 0 ${width} ${height}`}
+      preserveAspectRatio="none"
       className={className}
-      fill="none"
-      stroke="#c5973e"
-      strokeWidth="2"
-      strokeLinecap="round"
-      strokeLinejoin="round"
       aria-hidden
     >
-      <path d={d} />
+      <defs>
+        <linearGradient id={gradientId} x1="0" x2="0" y1="0" y2="1">
+          <stop offset="0%" stopColor="#c5973e" stopOpacity="0.18" />
+          <stop offset="100%" stopColor="#c5973e" stopOpacity="0" />
+        </linearGradient>
+      </defs>
+      <path d={fillPath} fill={`url(#${gradientId})`} stroke="none" />
+      <path
+        d={linePath}
+        fill="none"
+        stroke="#c5973e"
+        strokeOpacity="0.4"
+        strokeWidth="1.75"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        vectorEffect="non-scaling-stroke"
+      />
     </svg>
   );
 }
@@ -63,7 +84,7 @@ function catmullRomPath(points: ReadonlyArray<readonly [number, number]>): strin
     const p2 = points[i + 1];
     const p3 = points[i + 2] ?? points[i + 1];
 
-    // Standard Catmull-Rom → cubic conversion (tension = 0.5).
+    // Standard Catmull-Rom → cubic Bézier conversion (tension = 0.5).
     const c1x = p1[0] + (p2[0] - p0[0]) / 6;
     const c1y = p1[1] + (p2[1] - p0[1]) / 6;
     const c2x = p2[0] - (p3[0] - p1[0]) / 6;

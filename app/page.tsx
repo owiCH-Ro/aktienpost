@@ -250,16 +250,17 @@ function PerformanceCards() {
           {STRATEGIES.map((s) => (
             <article
               key={s.slug}
-              className="relative flex flex-col justify-between overflow-hidden rounded-xl border border-line bg-white p-7 shadow-[0_1px_2px_rgba(15,23,42,0.04)]"
+              className="relative flex min-h-[320px] flex-col justify-between overflow-hidden rounded-xl border border-line bg-white p-7 shadow-[0_1px_2px_rgba(15,23,42,0.04)]"
             >
-              <div className="flex items-start justify-between">
+              {/* Foreground content */}
+              <div className="relative z-10 flex items-start justify-between">
                 <h3 className="font-serif text-[24px] text-navy">{s.name}</h3>
                 <span className="text-[11px] uppercase tracking-[0.2em] text-secondary">
                   10 Jahre
                 </span>
               </div>
 
-              <div className="mt-6">
+              <div className="relative z-10 mt-6">
                 <div className="font-serif text-[52px] leading-none text-navy">
                   {s.total}
                 </div>
@@ -271,11 +272,18 @@ function PerformanceCards() {
                 </div>
               </div>
 
-              <div className="mt-6 flex items-end justify-between">
+              {/* Watermark sparkline — spans the full card width behind the
+                  p.a. label at the bottom. pointer-events-none so it doesn't
+                  block hover/click on the article itself. */}
+              <Sparkline
+                data={s.sparkline}
+                className="pointer-events-none absolute inset-x-0 bottom-0 h-[72px] w-full"
+              />
+
+              <div className="relative z-10 mt-6 flex items-end justify-between">
                 <span className="text-xs uppercase tracking-[0.2em] text-secondary">
                   {s.pa}
                 </span>
-                <Sparkline data={s.sparkline} className="h-10 w-28" />
               </div>
             </article>
           ))}
