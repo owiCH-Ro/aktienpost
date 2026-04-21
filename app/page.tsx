@@ -1,80 +1,11 @@
+import Link from "next/link";
+
 import { Faq } from "@/components/faq";
+import { Footer } from "@/components/footer";
 import { HeroChart } from "@/components/hero-chart";
 import { Nav } from "@/components/nav";
 import { Sparkline } from "@/components/sparkline";
-
-// ---------------------------------------------------------------------------
-// Data
-// ---------------------------------------------------------------------------
-
-type Strategy = {
-  slug: string;
-  name: string;
-  pa: string;
-  total: string;
-  benchLabel: string;
-  benchTotal: string;
-  maxDd: string;
-  benchDd: string;
-  description: string;
-  /** Simplified 10-year equity curve for the decorative sparkline. */
-  sparkline: number[];
-};
-
-const STRATEGIES: Strategy[] = [
-  {
-    slug: "spi-breakout",
-    name: "SPI Breakout",
-    pa: "15.7% p.a.",
-    total: "+350%",
-    benchLabel: "SPI",
-    benchTotal: "+108%",
-    maxDd: "-18.6%",
-    benchDd: "-26.9%",
-    description:
-      "Für Anleger, die den Schweizer Markt aktiv, aber diszipliniert begleiten wollen.",
-    sparkline: [100, 120, 155, 165, 205, 180, 235, 268, 255, 272, 340, 450],
-  },
-  {
-    slug: "spi-defensiv",
-    name: "SPI Defensiv",
-    pa: "10.9% p.a.",
-    total: "+190%",
-    benchLabel: "60/40",
-    benchTotal: "+68%",
-    maxDd: "-10.8%",
-    benchDd: "-17%",
-    description:
-      "Für vorsichtigere Anleger mit Fokus auf kleinere Rückschläge und ruhigeres Investieren.",
-    sparkline: [100, 110, 130, 140, 155, 150, 175, 195, 190, 200, 240, 290],
-  },
-  {
-    slug: "us-tech",
-    name: "US Tech Growth",
-    pa: "24.8% p.a.",
-    total: "+859%",
-    benchLabel: "Nasdaq",
-    benchTotal: "+571%",
-    maxDd: "-30.8%",
-    benchDd: "-35.6%",
-    description:
-      "Für Anleger, die Wachstum suchen, aber nicht jedem Trend blind hinterherlaufen wollen.",
-    sparkline: [100, 150, 200, 170, 280, 350, 420, 380, 350, 450, 650, 960],
-  },
-  {
-    slug: "europa-breakout",
-    name: "Europa Breakout",
-    pa: "23.1% p.a.",
-    total: "+730%",
-    benchLabel: "HDAX",
-    benchTotal: "+161%",
-    maxDd: "-25.4%",
-    benchDd: "-38.8%",
-    description:
-      "Für breit interessierte Anleger mit Blick auf Chancen jenseits der Schweiz.",
-    sparkline: [100, 140, 180, 165, 220, 200, 280, 320, 300, 380, 550, 830],
-  },
-];
+import { STRATEGIES } from "@/data/strategies";
 
 // ---------------------------------------------------------------------------
 // Page
@@ -197,9 +128,10 @@ function Strategies() {
 
         <div className="mt-14 space-y-4">
           {STRATEGIES.map((s) => (
-            <article
+            <Link
               key={s.slug}
-              className="grid grid-cols-1 gap-4 rounded-xl border border-line bg-white p-6 transition-colors hover:border-gold/50 md:grid-cols-[200px_1fr_auto] md:items-center md:gap-8 md:p-8"
+              href={`/strategien/${s.slug}`}
+              className="group grid grid-cols-1 gap-4 rounded-xl border border-line bg-white p-6 transition-colors hover:border-gold/60 md:grid-cols-[200px_1fr_auto] md:items-center md:gap-8 md:p-8"
             >
               <div className="flex flex-col gap-2">
                 <span className="text-[11px] uppercase tracking-[0.2em] text-secondary">
@@ -210,14 +142,20 @@ function Strategies() {
                 </span>
               </div>
               <p className="text-[15px] leading-relaxed text-secondary md:max-w-xl">
-                {s.description}
+                {s.shortDescription}
               </p>
-              <div className="text-left md:text-right">
+              <div className="flex items-center gap-3 md:justify-end">
                 <span className="font-serif text-[30px] text-redbrown">
                   {s.pa}
                 </span>
+                <span
+                  aria-hidden
+                  className="text-gold transition-transform group-hover:translate-x-1"
+                >
+                  →
+                </span>
               </div>
-            </article>
+            </Link>
           ))}
         </div>
       </div>
@@ -248,9 +186,10 @@ function PerformanceCards() {
 
         <div className="mt-14 grid gap-5 md:grid-cols-2">
           {STRATEGIES.map((s) => (
-            <article
+            <Link
               key={s.slug}
-              className="relative flex min-h-[320px] flex-col justify-between overflow-hidden rounded-xl border border-line bg-white p-7 shadow-[0_1px_2px_rgba(15,23,42,0.04)]"
+              href={`/strategien/${s.slug}`}
+              className="group relative flex min-h-[320px] flex-col justify-between overflow-hidden rounded-xl border border-line bg-white p-7 shadow-[0_1px_2px_rgba(15,23,42,0.04)] transition-colors hover:border-gold/60"
             >
               {/* Foreground content */}
               <div className="relative z-10 flex items-start justify-between">
@@ -277,15 +216,21 @@ function PerformanceCards() {
                   block hover/click on the article itself. */}
               <Sparkline
                 data={s.sparkline}
-                className="pointer-events-none absolute inset-x-0 bottom-0 h-[72px] w-full"
+                className="pointer-events-none absolute inset-x-0 bottom-0 h-[120px] w-full"
               />
 
               <div className="relative z-10 mt-6 flex items-end justify-between">
                 <span className="text-xs uppercase tracking-[0.2em] text-secondary">
                   {s.pa}
                 </span>
+                <span
+                  aria-hidden
+                  className="text-gold transition-transform group-hover:translate-x-1"
+                >
+                  →
+                </span>
               </div>
-            </article>
+            </Link>
           ))}
         </div>
       </div>
@@ -606,97 +551,3 @@ function FinalCta() {
   );
 }
 
-// ---------------------------------------------------------------------------
-// Section: Footer
-// ---------------------------------------------------------------------------
-
-function Footer() {
-  return (
-    <footer className="border-t border-line bg-cream">
-      <div className="container grid gap-12 py-14 md:grid-cols-3">
-        <div>
-          <div className="flex items-center gap-2 font-serif">
-            <span className="grid h-6 w-6 place-items-center rounded-sm bg-navy text-cream">
-              <span className="block text-sm leading-none font-bold">+</span>
-            </span>
-            <span className="text-lg font-semibold text-navy">
-              aktienpost<span className="text-gold">.</span>
-            </span>
-          </div>
-          <p className="mt-5 max-w-xs text-sm leading-relaxed text-secondary">
-            Börsensignale für Schweizer Privatanleger. Wissenschaftlich
-            getestet, einfach umzusetzen.
-          </p>
-        </div>
-
-        <div>
-          <h4 className="text-[11px] uppercase tracking-[0.2em] text-muted">
-            Service
-          </h4>
-          <ul className="mt-4 flex flex-col gap-2 text-sm text-ink/80">
-            <li>
-              <a className="hover:text-navy" href="#strategien">
-                Strategien
-              </a>
-            </li>
-            <li>
-              <a className="hover:text-navy" href="#performance">
-                Performance
-              </a>
-            </li>
-            <li>
-              <a className="hover:text-navy" href="#preise">
-                Preise
-              </a>
-            </li>
-            <li>
-              <a className="hover:text-navy" href="#blog">
-                Blog
-              </a>
-            </li>
-          </ul>
-        </div>
-
-        <div>
-          <h4 className="text-[11px] uppercase tracking-[0.2em] text-muted">
-            Rechtliches
-          </h4>
-          <ul className="mt-4 flex flex-col gap-2 text-sm text-ink/80">
-            <li>
-              <a className="hover:text-navy" href="/impressum">
-                Impressum
-              </a>
-            </li>
-            <li>
-              <a className="hover:text-navy" href="/datenschutz">
-                Datenschutz
-              </a>
-            </li>
-            <li>
-              <a className="hover:text-navy" href="/agb">
-                AGB
-              </a>
-            </li>
-          </ul>
-        </div>
-      </div>
-
-      <div className="border-t border-line">
-        <div className="container flex flex-col gap-3 py-8 text-xs leading-relaxed text-muted md:flex-row md:items-start md:justify-between">
-          <p className="max-w-3xl">
-            aktienpost.ch ist keine Anlageberatung. Die bereitgestellten
-            Informationen dienen ausschliesslich der allgemeinen Information
-            und stellen weder eine Empfehlung noch ein Angebot zum Kauf oder
-            Verkauf von Finanzinstrumenten dar. Vergangene Wertentwicklung ist
-            kein verlässlicher Indikator für zukünftige Ergebnisse.
-            Investitionen an den Finanzmärkten bergen Verlustrisiken, bis hin
-            zum Totalverlust des eingesetzten Kapitals.
-          </p>
-          <p className="md:text-right">
-            © {new Date().getFullYear()} aktienpost.ch
-          </p>
-        </div>
-      </div>
-    </footer>
-  );
-}

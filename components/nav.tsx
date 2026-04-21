@@ -1,10 +1,10 @@
 import Link from "next/link";
 
 const links: Array<{ href: string; label: string }> = [
-  { href: "#strategien", label: "Strategien" },
-  { href: "#performance", label: "Performance" },
-  { href: "#preise", label: "Preise" },
-  { href: "#blog", label: "Blog" },
+  { href: "/#strategien", label: "Strategien" },
+  { href: "/#performance", label: "Performance" },
+  { href: "/#preise", label: "Preise" },
+  { href: "/#blog", label: "Blog" },
 ];
 
 export function Nav() {
@@ -24,35 +24,32 @@ export function Nav() {
 
         <nav className="hidden md:flex items-center gap-8 text-[15px] text-ink/80">
           {links.map((l) => (
-            <a
+            <Link
               key={l.href}
               href={l.href}
               className="transition-colors hover:text-navy"
             >
               {l.label}
-            </a>
+            </Link>
           ))}
-          <a
-            href="#login"
-            className="transition-colors hover:text-navy"
-          >
+          <a href="/#login" className="transition-colors hover:text-navy">
             Anmelden
           </a>
         </nav>
 
-        <a
-          href="#preise"
+        <Link
+          href="/#preise"
           className="hidden md:inline-flex items-center gap-2 rounded-md border border-gold bg-gold px-4 py-2 text-sm font-medium text-white shadow-sm transition-colors hover:bg-gold-dark hover:border-gold-dark"
         >
           30-Tage Geld-zurück
-        </a>
+        </Link>
 
-        <a
-          href="#preise"
+        <Link
+          href="/#preise"
           className="md:hidden inline-flex items-center rounded-md bg-gold px-3 py-2 text-xs font-medium text-white"
         >
           Starten
-        </a>
+        </Link>
       </div>
     </header>
   );
