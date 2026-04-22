@@ -67,7 +67,7 @@ export function Sparkline({
         points={polyline}
         fill="none"
         stroke="#c5973e"
-        strokeOpacity="0.5"
+        strokeOpacity="0.4"
         strokeWidth="2"
         strokeLinecap="round"
         strokeLinejoin="round"

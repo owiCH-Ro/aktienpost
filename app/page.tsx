@@ -168,7 +168,7 @@ function PerformanceCards() {
                   block hover/click on the article itself. */}
               <Sparkline
                 data={curve}
-                className="pointer-events-none absolute inset-x-0 bottom-0 h-[120px] w-full"
+                className="pointer-events-none absolute inset-x-0 bottom-0 h-[80px] w-full"
               />
 
               <div className="relative z-10 mt-6 flex items-end justify-between">
