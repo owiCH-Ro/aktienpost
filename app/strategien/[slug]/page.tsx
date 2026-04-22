@@ -45,9 +45,9 @@ export default function StrategyDetailPage({ params }: Props) {
       {/* Header */}
       <section className="border-b border-line">
         <div className="container py-12 lg:py-16">
-          <span className="eyebrow">Strategie</span>
+          <span className="eyebrow">Strategie — {s.tagline}</span>
           <h1 className="mt-6 font-serif text-[42px] leading-[1.08] text-navy sm:text-[56px]">
-            {s.name}
+            {s.detailHeadline}
           </h1>
           <p className="mt-6 max-w-3xl text-base leading-relaxed text-secondary sm:text-lg">
             {s.shortDescription}
@@ -115,6 +115,28 @@ export default function StrategyDetailPage({ params }: Props) {
                 <p key={i}>{p}</p>
               ))}
             </div>
+
+            {s.kernaussagen.length > 0 && (
+              <div className="mt-10">
+                <h3 className="text-[11px] uppercase tracking-[0.2em] text-secondary">
+                  Kernaussagen
+                </h3>
+                <ul className="mt-5 space-y-3">
+                  {s.kernaussagen.map((k, i) => (
+                    <li
+                      key={i}
+                      className="flex items-start gap-3 text-[15px] leading-relaxed text-ink/85"
+                    >
+                      <span
+                        className="mt-[9px] h-[6px] w-[6px] flex-none rounded-full bg-gold"
+                        aria-hidden
+                      />
+                      <span>{k}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            )}
           </div>
 
           <aside className="self-start">

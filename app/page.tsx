@@ -83,7 +83,7 @@ function Hero() {
 
 function MetricsBar() {
   const items = [
-    { value: "+350%", label: "in 10 Jahren (SPI Breakout)" },
+    { value: "+860%", label: "in 10 Jahren (US Tech Growth)" },
     { value: "5 Min.", label: "Aufwand pro Signal" },
     { value: "CHF 490", label: "pro Jahr — ab" },
     { value: "30 Tage", label: "Geld-zurück-Garantie" },
@@ -247,17 +247,17 @@ function HowItWorks() {
     {
       n: "01",
       title: "Signal erhalten",
-      body: "Nach Börsenschluss analysiert unser System die Märkte und liefert konkrete Kauf- oder Verkaufssignale per E-Mail — mit Ticker, Preis und Stop-Loss.",
+      body: "Jeden Abend nach Börsenschluss analysiert unser Algorithmus die Märkte. Gibt es ein Kauf- oder Verkaufssignal, erhalten Sie eine E-Mail mit dem Aktiennamen, der empfohlenen Handlung und dem aktuellen Kurs. Im Schnitt passiert das alle 4 bis 6 Wochen pro Strategie.",
     },
     {
       n: "02",
       title: "Handel ausführen",
-      body: "Sie setzen das Signal in Ihrem Depot um — bei der Bank Ihrer Wahl. Rund fünf Minuten pro Signal. Keine Software-Installation, keine API-Anbindung.",
+      body: "Loggen Sie sich bei Ihrer Bank oder Ihrem Online-Broker ein und führen Sie den Kauf oder Verkauf aus. Das dauert weniger als 5 Minuten. Sie brauchen dafür kein spezielles Wissen — nur ein ganz normales Wertschriftendepot, wie Sie es bei Swissquote, PostFinance oder jeder Kantonalbank haben.",
     },
     {
       n: "03",
       title: "Zurücklehnen",
-      body: "Der Algorithmus überwacht die Position täglich. Bei Verkaufssignal oder Stop-Loss werden Sie informiert — disziplinierter als jede Bauchentscheidung.",
+      body: "Der Algorithmus überwacht Ihre Positionen rund um die Uhr. Er meldet sich nur, wenn eine Aktion nötig ist — sei es ein Verkaufssignal, ein Schutz-Auslöser oder eine neue Kaufgelegenheit. Sie müssen nicht täglich die Kurse prüfen.",
     },
   ];
   return (
@@ -266,8 +266,13 @@ function HowItWorks() {
         <div className="mx-auto max-w-2xl text-center">
           <span className="eyebrow">So funktioniert es</span>
           <h2 className="mt-6 font-serif text-[34px] leading-tight text-navy sm:text-[44px]">
-            Drei Schritte. <span className="italic">Mehr nicht.</span>
+            In drei Schritten zu besseren{" "}
+            <span className="italic">Anlage-Entscheidungen</span>.
           </h2>
+          <p className="mt-5 text-base leading-relaxed text-secondary sm:text-lg">
+            Kein Fachwissen nötig. Keine Software zu installieren. Kein
+            tägliches Überwachen.
+          </p>
         </div>
 
         <div className="mt-16 grid gap-10 md:grid-cols-3">
@@ -286,6 +291,11 @@ function HowItWorks() {
             </div>
           ))}
         </div>
+
+        <p className="mx-auto mt-16 max-w-2xl text-center font-serif text-lg italic text-navy">
+          Ihr gesamter Aufwand: rund 30 Minuten pro Quartal. Für alle vier
+          Strategien zusammen.
+        </p>
       </div>
     </section>
   );
@@ -298,29 +308,29 @@ function HowItWorks() {
 function BankComparison() {
   const rows = [
     {
-      label: "Kosten",
-      us: "Ab CHF 49 / Monat",
-      bank: "1.0 – 1.5% p.a. auf Depotvolumen",
+      label: "Kosten (bei CHF 100'000)",
+      us: "CHF 490 / Jahr",
+      bank: "CHF 1'000 – 1'500 / Jahr",
     },
     {
-      label: "Rendite",
-      us: "Historisch +15 bis +25% p.a.",
-      bank: "Meist unter Benchmark-Index",
+      label: "Rendite p.a. (CH, 10 J.)",
+      us: "15.7%",
+      bank: "5 – 8%",
     },
     {
-      label: "Aufwand",
-      us: "5 Minuten pro Signal",
-      bank: "Jahresgespräch, Telefonate",
+      label: "Ihr Zeitaufwand",
+      us: "~30 Min. / Quartal",
+      bank: "keiner",
     },
     {
       label: "Transparenz",
-      us: "Jedes Signal regelbasiert dokumentiert",
-      bank: "Discretionary, kaum nachvollziehbar",
+      us: "Jedes Signal sichtbar",
+      bank: "Quartals-Report",
     },
     {
       label: "Mindestanlage",
-      us: "Keine",
-      bank: "Typisch ab CHF 250'000",
+      us: "keine",
+      bank: "oft CHF 100'000+",
     },
   ];
 

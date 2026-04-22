@@ -23,6 +23,7 @@ export type KeyFacts = {
 export type Strategy = {
   slug: string;
   name: string;
+  tagline: string; // e.g. "Schweiz, Offensiv"
 
   // Landing page fields
   pa: string;
@@ -35,7 +36,9 @@ export type Strategy = {
   sparkline: number[];
 
   // Detail page fields
+  detailHeadline: string;
   longDescription: string[];
+  kernaussagen: string[];
   /** Header metric: trades per year. */
   tradesPerYear: string;
   /** Optional note rendered under the performance table. */
@@ -59,6 +62,7 @@ export const STRATEGIES: Strategy[] = [
   {
     slug: "spi-breakout",
     name: "SPI Breakout",
+    tagline: "Schweiz, Offensiv",
     pa: "15.7% p.a.",
     total: "+350%",
     benchLabel: "SPI",
@@ -71,9 +75,17 @@ export const STRATEGIES: Strategy[] = [
       100, 108, 120, 135, 155, 160, 158, 165, 178, 192, 205, 210, 180, 210, 235,
       268, 255, 272, 310, 340, 390, 430, 450,
     ],
+    detailHeadline: "SPI Breakout — Schweizer Aktien systematisch handeln",
     longDescription: [
-      "Diese Strategie analysiert täglich alle Aktien des Swiss Performance Index und identifiziert Titel, die aus einer längeren Seitwärtsbewegung nach oben ausbrechen. Solche Ausbrüche deuten auf den Beginn eines neuen Aufwärtstrends hin.",
-      "Die Strategie investiert in maximal 7 Positionen gleichzeitig und schützt jede Position mit einem automatischen Verlustlimit. Im Durchschnitt werden pro Jahr etwa 10 Handelssignale generiert — also etwa alle 5 Wochen eine Aktion.",
+      "Der Swiss Performance Index umfasst nahezu alle kotierten Schweizer Aktiengesellschaften. Unsere Strategie durchleuchtet dieses Universum täglich und sucht nach Aktien, die eine ungewöhnliche Stärke zeigen — einen sogenannten Breakout.",
+      "Ein Breakout entsteht, wenn eine Aktie nach einer Phase der Seitwärtsbewegung plötzlich mit Kraft nach oben ausbricht. Solche Bewegungen sind oft der Beginn eines neuen Aufwärtstrends und bieten ein attraktives Chance-Risiko-Verhältnis.",
+      "Die Strategie investiert in maximal 7 Positionen gleichzeitig. Jede Position ist mit einem automatischen Verlustlimit geschützt: Fällt eine Aktie um mehr als 15% unter den Kaufpreis, wird sie verkauft — ohne Wenn und Aber. Umgekehrt lässt die Strategie Gewinner laufen, bis ein Verkaufssignal kommt.",
+      "Im Durchschnitt werden pro Jahr etwa 10 Handelssignale generiert — also etwa alle 5 Wochen eine Aktion. Das ist kein hektisches Day-Trading, sondern diszipliniertes Investieren mit klaren Regeln.",
+    ],
+    kernaussagen: [
+      "In 10 Jahren mehr als 3x so viel Rendite wie der SPI — bei einem geringeren maximalen Rückgang (-19% statt -27%).",
+      "Im Schnitt alle 5 Wochen ein Signal. Kein tägliches Trading.",
+      "Auch eine negative YTD-Phase gehört dazu. Was zählt, ist das langfristige Bild.",
     ],
     tradesPerYear: "~10",
     performanceTable: [
@@ -84,12 +96,12 @@ export const STRATEGIES: Strategy[] = [
       { period: "10 Jahre", strat: { return: "+349.6%", pa: "+15.7%", maxDd: "-18.6%" }, bench: { return: "+107.9%", pa: "+7.4%", maxDd: "-26.9%" } },
     ],
     keyFacts: {
-      markt: "SPI",
+      markt: "Swiss Performance Index (SPI)",
       typ: "Offensiv",
       positionen: "max. 7",
       rebalancing: "Signal-basiert",
-      trades: "~10 / Jahr",
-      benchmark: "SPI",
+      trades: "ca. 10 / Jahr",
+      benchmark: "SPI Total Return",
       backtest: "2016 – 2026",
     },
     curve: {
@@ -114,48 +126,60 @@ export const STRATEGIES: Strategy[] = [
   {
     slug: "spi-defensiv",
     name: "SPI Defensiv",
-    pa: "10.9% p.a.",
-    total: "+190%",
+    tagline: "Schweiz, Defensiv",
+    pa: "11.5% p.a.",
+    total: "+207%",
     benchLabel: "60/40",
     benchTotal: "+68%",
-    maxDd: "-10.8%",
+    maxDd: "-6.8%",
     benchDd: "-17%",
     shortDescription:
       "Für vorsichtigere Anleger mit Fokus auf kleinere Rückschläge und ruhigeres Investieren.",
+    // Sparkline ends around 307 to reflect the new +207% 10-year return.
     sparkline: [
-      100, 105, 110, 120, 130, 138, 136, 145, 155, 158, 152, 165, 175, 195, 190,
-      200, 210, 220, 238, 250, 274, 288, 291,
+      100, 105, 110, 120, 130, 138, 136, 145, 155, 158, 152, 165, 175, 195, 193,
+      205, 218, 232, 250, 262, 280, 295, 307,
     ],
+    detailHeadline: "SPI Defensiv — Ruhig investieren, gut schlafen",
     longDescription: [
-      "Die defensivste unserer Strategien. Sie setzt auf die stabilsten Schweizer Aktien — Titel mit geringer Kursschwankung und positivem Trend. Das Portfolio wird quartalsweise angepasst: Die 7 ruhigsten Aktien mit Aufwärtstrend werden ausgewählt.",
-      "Zusätzlich schützt ein globaler Trendfilter (basierend auf dem Weltaktienmarkt) vor grösseren Marktkorrekturen. Fällt der globale Trend, wird das gesamte Portfolio in Cash umgeschichtet. In 10 Jahren gab es nur 5 solcher Schutz-Auslösungen.",
-      "Der maximale Rückgang betrug lediglich -10.8% — deutlich weniger als bei einem klassischen 60/40-Portfolio (-17%) oder dem SPI selbst (-27%).",
+      "Nicht jeder Anleger sucht die maximale Rendite. Viele möchten vor allem eines: Ruhig schlafen können. Genau dafür haben wir die SPI Defensiv Strategie entwickelt.",
+      "Das Prinzip ist einfach: Aus dem gesamten Schweizer Aktienmarkt — inklusive der soliden Kantonalbanken — wählen wir quartalsweise die 7 Aktien aus, die zwei Eigenschaften vereinen: geringe Kursschwankung (tiefe Volatilität) und einen positiven Trend (Aufwärtsmomentum). Das sind typischerweise Kantonalbanken, Immobilien-Gesellschaften und etablierte Industrieunternehmen — die „langweiligen“ Titel, die still und stetig steigen.",
+      "Zusätzlich überwacht ein globaler Schutzfilter den Weltaktienmarkt. Rutscht der globale Trend ins Negative, wird das gesamte Portfolio in Cash umgeschichtet — automatisch und ohne Zögern. In den letzten 10 Jahren wurde dieser Schutz nur 5 Mal ausgelöst (unter anderem zu Beginn der Corona-Krise und beim Zinsanstieg 2022). Sobald der globale Trend wieder dreht, wird frisch investiert.",
+      "Das Ergebnis: +207% Rendite in 10 Jahren bei einem maximalen Rückgang von nur -6.8%. Zum Vergleich: Ein klassisches 60/40-Portfolio — die „ausgewogene“ Strategie, die Ihnen Ihre Bank anbietet — hätte im selben Zeitraum nur rund +68% erzielt, bei einem Rückgang von -17%.",
     ],
-    tradesPerYear: "~8",
+    kernaussagen: [
+      "Der tiefste maximale Rückgang aller Strategien: nur -6.8%.",
+      "Dreimal so viel Rendite wie ein 60/40-Portfolio Ihrer Bank.",
+      "Nur 4 Anpassungen pro Jahr — weniger als 1 Stunde Aufwand total.",
+      "Ideal als Basis-Baustein eines Portfolios, kombinierbar mit offensiveren Strategien.",
+      "Kantonalbanken und Immobilien-Aktien als stabiler Kern.",
+    ],
+    tradesPerYear: "~10",
     performanceNote:
-      "Fairer Vergleich: Als defensive Strategie mit nur -10.8% maximalem Rückgang ist der relevante Vergleich ein klassisches 60/40-Portfolio (ca. +68% Rendite, ca. -17% Max. Rückgang) — die sogenannte „ausgewogene“ Strategie, wie sie Schweizer Banken anbieten.",
+      "Fairer Vergleich: Als defensive Strategie mit nur -6.8% maximalem Rückgang ist der relevante Vergleich ein klassisches 60/40-Portfolio (ca. +68% Rendite, ca. -17% Max. Rückgang) — die sogenannte „ausgewogene“ Strategie, wie sie Schweizer Banken anbieten. SPI Defensiv bietet dreimal so viel Rendite bei einem Drittel des Risikos.",
     performanceTable: [
-      { period: "YTD", strat: { return: "+5.5%", pa: "+21.3%", maxDd: "-5.6%" }, bench: { return: "+3.1%", pa: "+11.7%", maxDd: "-10.9%" } },
-      { period: "1 Jahr", strat: { return: "+29.9%", pa: "+22.6%", maxDd: "-3.5%" }, bench: { return: "+20.8%", pa: "+15.9%", maxDd: "-15.9%" } },
-      { period: "2 Jahre", strat: { return: "+56.1%", pa: "+21.5%", maxDd: "-3.5%" }, bench: { return: "+28.7%", pa: "+11.7%", maxDd: "-15.9%" } },
-      { period: "5 Jahre", strat: { return: "+68.3%", pa: "+10.4%", maxDd: "-8.7%" }, bench: { return: "+39.4%", pa: "+6.5%", maxDd: "-21.5%" } },
-      { period: "10 Jahre", strat: { return: "+189.8%", pa: "+10.9%", maxDd: "-10.8%" }, bench: { return: "+107.9%", pa: "+7.4%", maxDd: "-26.9%" } },
+      { period: "YTD", strat: { return: "+12.3%", pa: "+51.4%", maxDd: "-1.3%" }, bench: { return: "+3.1%", pa: "+11.7%", maxDd: "-10.9%" } },
+      { period: "1 Jahr", strat: { return: "+39.4%", pa: "+29.5%", maxDd: "-1.3%" }, bench: { return: "+20.8%", pa: "+15.9%", maxDd: "-15.9%" } },
+      { period: "2 Jahre", strat: { return: "+63.8%", pa: "+24.1%", maxDd: "-1.4%" }, bench: { return: "+28.7%", pa: "+11.7%", maxDd: "-15.9%" } },
+      { period: "5 Jahre", strat: { return: "+76.2%", pa: "+11.3%", maxDd: "-5.8%" }, bench: { return: "+39.4%", pa: "+6.5%", maxDd: "-21.5%" } },
+      { period: "10 Jahre", strat: { return: "+206.7%", pa: "+11.5%", maxDd: "-6.8%" }, bench: { return: "+107.9%", pa: "+7.4%", maxDd: "-26.9%" } },
     ],
     keyFacts: {
-      markt: "SPI",
+      markt: "SPI inkl. Kantonalbanken",
       typ: "Defensiv",
-      positionen: "max. 7",
+      positionen: "7 (quartalsweises Rebalancing)",
       rebalancing: "Quartalsweise",
-      trades: "~8 / Jahr",
+      trades: "ca. 10 / Jahr",
       benchmark: "60/40-Portfolio",
       backtest: "2016 – 2026",
     },
     curve: {
+      // Smoothed up to ~307 to match +207% with shallower dips (~-6.8% max DD).
       strategy: [
-        100, 103, 105, 108, 110, 113, 116, 120, 125, 128, 130, 127, 130, 132,
-        135, 138, 136, 140, 145, 150, 155, 158, 152, 155, 160, 165, 172, 175,
-        180, 182, 190, 195, 190, 185, 195, 200, 198, 200, 205, 210, 220, 230,
-        238, 250, 260, 274, 285, 291,
+        100, 103, 105, 108, 110, 113, 116, 120, 125, 128, 130, 129, 132, 134,
+        137, 140, 138, 142, 147, 152, 158, 162, 157, 160, 164, 170, 178, 182,
+        188, 193, 200, 206, 202, 198, 208, 215, 214, 218, 225, 232, 242, 252,
+        262, 273, 283, 294, 302, 307,
       ],
       // User: "same as SPI Breakout benchmark (both use SPI)".
       benchmark: [
@@ -172,6 +196,7 @@ export const STRATEGIES: Strategy[] = [
   {
     slug: "us-tech-growth",
     name: "US Tech Growth",
+    tagline: "Nasdaq 100, Offensiv",
     pa: "24.8% p.a.",
     total: "+859%",
     benchLabel: "Nasdaq",
@@ -184,9 +209,18 @@ export const STRATEGIES: Strategy[] = [
       100, 130, 170, 200, 180, 250, 300, 350, 280, 320, 400, 450, 380, 350, 420,
       500, 550, 600, 700, 800, 860, 920, 960,
     ],
+    detailHeadline:
+      "US Tech Growth — Das Wachstum der Tech-Giganten einfangen",
     longDescription: [
-      "Diese Strategie fokussiert auf die 100 grössten Technologieunternehmen der US-Börse (Nasdaq 100) und identifiziert die stärksten Ausbruchsbewegungen. Ein Marktfilter verhindert Käufe in Abwärtsphasen, und ein zusätzlicher Schutzmechanismus sichert Gewinne in besonders starken Rallye-Phasen.",
-      "Die Strategie bietet das höchste Renditepotenzial (+859% in 10 Jahren), hat aber auch den höchsten maximalen Rückgang (-31%). Geeignet für Anleger mit höherer Risikotoleranz und einem Anlagehorizont von mindestens 5 Jahren.",
+      "Der Nasdaq 100 vereint die 100 grössten Technologieunternehmen der Welt: Apple, Microsoft, Nvidia, Amazon, Meta und viele mehr. Diese Unternehmen haben in den letzten Jahrzehnten enorme Werte geschaffen — aber der Weg war nicht immer glatt.",
+      "Unsere US Tech Growth Strategie sucht gezielt nach Technologie-Aktien, die aus einer Konsolidierungsphase mit Kraft nach oben ausbrechen. Ein Marktfilter stellt sicher, dass nur in Aufwärtsphasen investiert wird: Befindet sich der Nasdaq 100 im Abwärtstrend, werden keine neuen Positionen eröffnet.",
+      "Zusätzlich verfügt die Strategie über einen Schutzmechanismus für besonders starke Rallye-Phasen: Steigt das Portfolio schnell und stark an (wie während der KI-Rallye 2024), werden die Gewinne mit einem nachlaufenden Schutz gesichert. So werden Gewinne nicht zu früh realisiert, aber ein grösserer Rückfall wird begrenzt.",
+      "Das Ergebnis: +859% in 10 Jahren. Der Nasdaq 100 selbst legte im selben Zeitraum +571% zu. Der maximale Rückgang war mit -31% deutlich geringer als beim Index (-36%).",
+    ],
+    kernaussagen: [
+      "Die renditestärkste Strategie: +859% in 10 Jahren.",
+      "Schlägt den Nasdaq 100 um fast 300 Prozentpunkte.",
+      "Geeignet für Anleger mit höherer Risikotoleranz und einem Anlagehorizont von mindestens 5 Jahren.",
     ],
     tradesPerYear: "~12",
     performanceTable: [
@@ -201,8 +235,8 @@ export const STRATEGIES: Strategy[] = [
       typ: "Offensiv",
       positionen: "max. 5",
       rebalancing: "Signal-basiert",
-      trades: "~12 / Jahr",
-      benchmark: "Nasdaq 100",
+      trades: "ca. 12 / Jahr",
+      benchmark: "Nasdaq 100 Total Return",
       backtest: "2016 – 2026",
     },
     curve: {
@@ -225,6 +259,7 @@ export const STRATEGIES: Strategy[] = [
   {
     slug: "europa-breakout",
     name: "Europa Breakout",
+    tagline: "HDAX, Offensiv",
     pa: "23.1% p.a.",
     total: "+730%",
     benchLabel: "HDAX",
@@ -237,11 +272,19 @@ export const STRATEGIES: Strategy[] = [
       100, 120, 150, 180, 165, 200, 240, 280, 250, 220, 280, 320, 300, 350, 400,
       450, 500, 550, 620, 700, 750, 800, 830,
     ],
+    detailHeadline:
+      "Europa Breakout — Die stärksten deutschen Aktien systematisch handeln",
     longDescription: [
-      "Dieselbe bewährte Ausbruchsmethode wie beim SPI Breakout, angewandt auf den deutschen HDAX — die Kombination aus DAX 40 und MDAX 50. Ein Marktfilter verhindert Käufe, wenn der deutsche Aktienmarkt im Abwärtstrend ist.",
-      "Mit +730% in 10 Jahren bei einem maximalen Rückgang von nur -25% (Index: -39%) ist dies die Strategie mit der grössten Outperformance gegenüber ihrem Vergleichsindex.",
+      "Der deutsche Aktienmarkt bietet ein breites Universum an Qualitätsunternehmen — von den DAX-Schwergewichten wie SAP und Siemens bis zu den innovativen Mittelständlern im MDAX. Unsere Europa Breakout Strategie durchleuchtet täglich alle 90 Titel und identifiziert die stärksten Ausbruchsbewegungen.",
+      "Ein Marktfilter achtet auf den übergeordneten Trend des deutschen Aktienmarktes. Befindet sich der Markt im Abwärtstrend, werden keine neuen Positionen eröffnet — so werden Verluste in schwierigen Marktphasen deutlich reduziert.",
+      "Das Ergebnis ist beeindruckend: +730% in 10 Jahren, während der HDAX-Index nur +161% erzielte. Das entspricht einer 4.5-fachen Outperformance. Gleichzeitig war der maximale Rückgang mit -25% deutlich geringer als beim Index (-39%).",
     ],
-    tradesPerYear: "~10",
+    kernaussagen: [
+      "4.5x mehr Rendite als der Index — die höchste Outperformance aller Strategien.",
+      "Maximaler Rückgang -25% vs. -39% beim Index.",
+      "Nur ca. 8 Trades pro Jahr — etwa alle 6 Wochen.",
+    ],
+    tradesPerYear: "~8",
     performanceTable: [
       { period: "YTD", strat: { return: "+1.4%", pa: "+7.4%", maxDd: "-15.5%" }, bench: { return: "-1.9%", pa: "-9.6%", maxDd: "-11.8%" } },
       { period: "1 Jahr", strat: { return: "+30.0%", pa: "+24.5%", maxDd: "-17.0%" }, bench: { return: "+12.8%", pa: "+10.6%", maxDd: "-16.0%" } },
@@ -250,12 +293,12 @@ export const STRATEGIES: Strategy[] = [
       { period: "10 Jahre", strat: { return: "+730.1%", pa: "+23.1%", maxDd: "-25.4%" }, bench: { return: "+161.1%", pa: "+9.9%", maxDd: "-38.8%" } },
     ],
     keyFacts: {
-      markt: "HDAX",
+      markt: "HDAX (DAX 40 + MDAX 50)",
       typ: "Offensiv",
       positionen: "max. 5",
       rebalancing: "Signal-basiert",
-      trades: "~10 / Jahr",
-      benchmark: "HDAX",
+      trades: "ca. 8 / Jahr",
+      benchmark: "HDAX Total Return",
       backtest: "2016 – 2026",
     },
     curve: {

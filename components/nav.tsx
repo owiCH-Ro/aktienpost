@@ -4,7 +4,8 @@ const links: Array<{ href: string; label: string }> = [
   { href: "/#strategien", label: "Strategien" },
   { href: "/#performance", label: "Performance" },
   { href: "/#preise", label: "Preise" },
-  { href: "/#blog", label: "Blog" },
+  { href: "/ueber-mich", label: "Über mich" },
+  { href: "/beispiel-signal", label: "Beispiel-Signal" },
 ];
 
 export function Nav() {
@@ -22,7 +23,7 @@ export function Nav() {
           </span>
         </Link>
 
-        <nav className="hidden md:flex items-center gap-8 text-[15px] text-ink/80">
+        <nav className="hidden lg:flex items-center gap-7 text-[14px] text-ink/80">
           {links.map((l) => (
             <Link
               key={l.href}
@@ -32,9 +33,6 @@ export function Nav() {
               {l.label}
             </Link>
           ))}
-          <a href="/#login" className="transition-colors hover:text-navy">
-            Anmelden
-          </a>
         </nav>
 
         <Link
