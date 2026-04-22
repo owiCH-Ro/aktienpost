@@ -368,9 +368,10 @@ function Pricing() {
       yearly: "1'490",
       features: [
         "Alles aus Plus",
+        "Persönliche Einschätzung des Gründers bei aussergewöhnlichen Marktsituationen (z.B. Übernahmen, Delistings, Marktcrashs)",
         "Quartals-Markteinschätzung",
-        "Prioritäts-Support per E-Mail",
-        "Experimentelle Strategien",
+        "Prioritäts-E-Mail-Support",
+        "Zugang zu experimentellen Strategien",
       ],
       cta: "Premium wählen",
       featured: false,
