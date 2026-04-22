@@ -1,43 +1,52 @@
 /** Full-width watermark sparkline for the performance cards.
  *
- * Simple SVG polyline (no smoothing) so the shape of each strategy's
- * 10-year equity curve stays visually distinctive — Catmull-Rom
- * smoothing was washing out the differences between strategies.
- *
- * The curve fills ~60% of the vertical space so it reads as a shape,
- * not a flat stripe.
+ * Takes the strategy's real backtest curve (weekly points from
+ * chart_data.json) and downsamples it to roughly 50 points so the SVG
+ * stays lightweight. Simple polyline — the raw curve shape reads
+ * distinctly without any smoothing.
  */
 export function Sparkline({
   data,
   className = "",
+  sampleEvery = 10,
 }: {
   data: number[];
   className?: string;
+  /** Keep every Nth point. With ~530 weekly points and the default 10
+   * this lands at ~53 samples, which is detailed enough to show the
+   * dips but cheap to render four times per page. */
+  sampleEvery?: number;
 }) {
   if (!data || data.length < 2) return null;
 
-  // Internal viewBox. preserveAspectRatio="none" stretches to container.
+  // Downsample + always include the last point so the curve ends at the
+  // actual final value.
+  const sampled: number[] = [];
+  for (let i = 0; i < data.length; i += sampleEvery) sampled.push(data[i]);
+  if (sampled[sampled.length - 1] !== data[data.length - 1]) {
+    sampled.push(data[data.length - 1]);
+  }
+
   const width = 200;
   const height = 80;
-  // ~20% padding top/bottom → curve occupies ~60% of vertical space.
   const padTop = 16;
   const padBottom = 16;
 
-  const min = Math.min(...data);
-  const max = Math.max(...data);
+  const min = Math.min(...sampled);
+  const max = Math.max(...sampled);
   const range = max - min || 1;
   const plotH = height - padTop - padBottom;
 
-  const coords = data.map((v, i) => {
-    const x = (i / (data.length - 1)) * width;
+  const coords = sampled.map((v, i) => {
+    const x = (i / (sampled.length - 1)) * width;
     const y = padTop + plotH - ((v - min) / range) * plotH;
     return { x, y };
   });
 
-  // Polyline: plain line segments, no smoothing.
-  const polyline = coords.map((p) => `${p.x.toFixed(2)},${p.y.toFixed(2)}`).join(" ");
+  const polyline = coords
+    .map((p) => `${p.x.toFixed(2)},${p.y.toFixed(2)}`)
+    .join(" ");
 
-  // Fill path: same polyline, closed down to the baseline.
   const fillD =
     `M${coords[0].x.toFixed(2)},${coords[0].y.toFixed(2)} ` +
     coords

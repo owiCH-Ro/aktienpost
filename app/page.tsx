@@ -5,6 +5,8 @@ import { Footer } from "@/components/footer";
 import { HeroChart } from "@/components/hero-chart";
 import { Nav } from "@/components/nav";
 import { Sparkline } from "@/components/sparkline";
+import { StrategyTabs } from "@/components/strategy-tabs";
+import chartData from "@/data/chart_data.json";
 import { STRATEGIES } from "@/data/strategies";
 
 // ---------------------------------------------------------------------------
@@ -18,7 +20,7 @@ export default function Home() {
 
       <Hero />
       <MetricsBar />
-      <Strategies />
+      <StrategyTabs />
       <PerformanceCards />
       <HowItWorks />
       <BankComparison />
@@ -107,63 +109,6 @@ function MetricsBar() {
 }
 
 // ---------------------------------------------------------------------------
-// Section: Strategies (editorial cards)
-// ---------------------------------------------------------------------------
-
-function Strategies() {
-  return (
-    <section id="strategien" className="border-b border-line">
-      <div className="container py-20 lg:py-28">
-        <div className="mx-auto max-w-2xl text-center">
-          <span className="eyebrow">Strategien</span>
-          <h2 className="mt-6 font-serif text-[34px] leading-tight text-navy sm:text-[44px]">
-            Vier Strategien für vier <span className="italic">Anlegertypen</span>.
-          </h2>
-          <p className="mt-5 text-base leading-relaxed text-secondary sm:text-lg">
-            Jede Strategie folgt einem klar definierten Regelwerk — keine
-            Diskretion, keine Bauchentscheidungen. Zehn Jahre Backtest
-            belegen die Funktionsweise.
-          </p>
-        </div>
-
-        <div className="mt-14 space-y-4">
-          {STRATEGIES.map((s) => (
-            <Link
-              key={s.slug}
-              href={`/strategien/${s.slug}`}
-              className="group grid grid-cols-1 gap-4 rounded-xl border border-line bg-white p-6 transition-colors hover:border-gold/60 md:grid-cols-[200px_1fr_auto] md:items-center md:gap-8 md:p-8"
-            >
-              <div className="flex flex-col gap-2">
-                <span className="text-[11px] uppercase tracking-[0.2em] text-secondary">
-                  Historischer Backtest
-                </span>
-                <span className="font-serif text-[28px] leading-tight text-navy">
-                  {s.name}
-                </span>
-              </div>
-              <p className="text-[15px] leading-relaxed text-secondary md:max-w-xl">
-                {s.shortDescription}
-              </p>
-              <div className="flex items-center gap-3 md:justify-end">
-                <span className="font-serif text-[30px] text-redbrown">
-                  {s.pa}
-                </span>
-                <span
-                  aria-hidden
-                  className="text-gold transition-transform group-hover:translate-x-1"
-                >
-                  →
-                </span>
-              </div>
-            </Link>
-          ))}
-        </div>
-      </div>
-    </section>
-  );
-}
-
-// ---------------------------------------------------------------------------
 // Section: Performance cards (2x2 grid)
 // ---------------------------------------------------------------------------
 
@@ -185,7 +130,14 @@ function PerformanceCards() {
         </div>
 
         <div className="mt-14 grid gap-5 md:grid-cols-2">
-          {STRATEGIES.map((s) => (
+          {STRATEGIES.map((s) => {
+            // Pull the real backtest curve from chart_data.json; the
+            // <Sparkline> downsamples every Nth point itself so we just
+            // hand over the raw weekly series.
+            const curve = (chartData as Record<string, { data: { strategy: number }[] }>)[
+              s.slug
+            ]?.data.map((p) => p.strategy) ?? [];
+            return (
             <Link
               key={s.slug}
               href={`/strategien/${s.slug}`}
@@ -215,7 +167,7 @@ function PerformanceCards() {
                   p.a. label at the bottom. pointer-events-none so it doesn't
                   block hover/click on the article itself. */}
               <Sparkline
-                data={s.sparkline}
+                data={curve}
                 className="pointer-events-none absolute inset-x-0 bottom-0 h-[120px] w-full"
               />
 
@@ -231,7 +183,8 @@ function PerformanceCards() {
                 </span>
               </div>
             </Link>
-          ))}
+          );
+          })}
         </div>
       </div>
     </section>

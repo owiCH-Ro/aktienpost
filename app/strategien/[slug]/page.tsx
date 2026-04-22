@@ -6,6 +6,7 @@ import { Footer } from "@/components/footer";
 import { Nav } from "@/components/nav";
 import { PerformanceTable } from "@/components/performance-table";
 import { StrategyChart } from "@/components/strategy-chart";
+import chartData from "@/data/chart_data.json";
 import { STRATEGIES, getStrategyBySlug } from "@/data/strategies";
 
 interface Props {
@@ -69,16 +70,19 @@ export default function StrategyDetailPage({ params }: Props) {
             <div>
               <span className="eyebrow">Performance 2016 – 2026</span>
               <h2 className="mt-4 font-serif text-[30px] leading-tight text-navy sm:text-[36px]">
-                Strategie vs. <span className="italic">{s.curve.benchmarkLabel}</span>
+                Strategie vs.{" "}
+                <span className="italic">
+                  {
+                    (chartData as Record<string, { benchmarkLabel: string }>)[
+                      params.slug
+                    ]?.benchmarkLabel ?? s.keyFacts.benchmark
+                  }
+                </span>
               </h2>
             </div>
           </div>
           <div className="rounded-xl border border-line bg-white p-6">
-            <StrategyChart
-              strategy={s.curve.strategy}
-              benchmark={s.curve.benchmark}
-              benchmarkLabel={s.curve.benchmarkLabel}
-            />
+            <StrategyChart slug={params.slug} />
           </div>
         </div>
       </section>

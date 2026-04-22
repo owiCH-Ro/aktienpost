@@ -24,6 +24,10 @@ export type Strategy = {
   slug: string;
   name: string;
   tagline: string; // e.g. "Schweiz, Offensiv"
+  /** Short all-caps subtitle shown in the tabbed section, e.g. "DAX + MDAX IM TREND". */
+  subtitle: string;
+  /** One-line bold claim for the highlight box in the tabbed section. */
+  highlight: string;
 
   // Landing page fields
   pa: string;
@@ -33,7 +37,6 @@ export type Strategy = {
   maxDd: string;
   benchDd: string;
   shortDescription: string;
-  sparkline: number[];
 
   // Detail page fields
   detailHeadline: string;
@@ -45,13 +48,10 @@ export type Strategy = {
   performanceNote?: string;
   performanceTable: PerformanceRow[];
   keyFacts: KeyFacts;
-  /** Full 10-year equity curve used on the detail chart. */
-  curve: {
-    strategy: number[];
-    benchmark: number[];
-    /** Legend label for the benchmark line. */
-    benchmarkLabel: string;
-  };
+  // Real equity curves live in data/chart_data.json, keyed by slug, and
+  // are loaded by the chart + sparkline components directly. Keeping
+  // them out of this module means the strategy metadata file stays
+  // readable.
 };
 
 // ---------------------------------------------------------------------------
@@ -63,6 +63,8 @@ export const STRATEGIES: Strategy[] = [
     slug: "spi-breakout",
     name: "SPI Breakout",
     tagline: "Schweiz, Offensiv",
+    subtitle: "Schweizer Aktien im Trend",
+    highlight: "Über 3× so viel Rendite wie der SPI: +350% vs +108%",
     pa: "15.7% p.a.",
     total: "+350%",
     benchLabel: "SPI",
@@ -71,10 +73,6 @@ export const STRATEGIES: Strategy[] = [
     benchDd: "-26.9%",
     shortDescription:
       "Für Anleger, die den Schweizer Markt aktiv, aber diszipliniert begleiten wollen.",
-    sparkline: [
-      100, 108, 120, 135, 155, 160, 158, 165, 178, 192, 205, 210, 180, 210, 235,
-      268, 255, 272, 310, 340, 390, 430, 450,
-    ],
     detailHeadline: "SPI Breakout — Schweizer Aktien systematisch handeln",
     longDescription: [
       "Der Swiss Performance Index umfasst nahezu alle kotierten Schweizer Aktiengesellschaften. Unsere Strategie durchleuchtet dieses Universum täglich und sucht nach Aktien, die eine ungewöhnliche Stärke zeigen — einen sogenannten Breakout.",
@@ -104,29 +102,14 @@ export const STRATEGIES: Strategy[] = [
       benchmark: "SPI Total Return",
       backtest: "2016 – 2026",
     },
-    curve: {
-      strategy: [
-        100, 105, 108, 112, 118, 120, 125, 135, 142, 150, 148, 155, 160, 158,
-        155, 162, 168, 165, 170, 178, 185, 192, 198, 205, 210, 215, 180, 195,
-        210, 225, 235, 245, 255, 262, 270, 275, 268, 260, 250, 242, 238, 245,
-        255, 260, 268, 275, 270, 265, 272, 280, 290, 302, 310, 325, 340, 355,
-        370, 390, 410, 430, 450,
-      ],
-      benchmark: [
-        100, 102, 104, 106, 108, 110, 114, 118, 122, 126, 128, 130, 132, 130,
-        128, 132, 134, 131, 135, 140, 145, 148, 150, 155, 158, 160, 128, 138,
-        148, 155, 158, 162, 168, 172, 178, 180, 175, 170, 162, 155, 152, 158,
-        162, 165, 168, 170, 168, 165, 170, 175, 180, 185, 188, 192, 196, 198,
-        200, 202, 204, 206, 208,
-      ],
-      benchmarkLabel: "Buy & Hold SPI",
-    },
   },
 
   {
     slug: "spi-defensiv",
     name: "SPI Defensiv",
     tagline: "Schweiz, Defensiv",
+    subtitle: "Schweiz mit Schutzfilter",
+    highlight: "Tiefster Rückgang aller Strategien: nur −6.8%",
     pa: "11.5% p.a.",
     total: "+207%",
     benchLabel: "60/40",
@@ -135,11 +118,6 @@ export const STRATEGIES: Strategy[] = [
     benchDd: "-17%",
     shortDescription:
       "Für vorsichtigere Anleger mit Fokus auf kleinere Rückschläge und ruhigeres Investieren.",
-    // Sparkline ends around 307 to reflect the new +207% 10-year return.
-    sparkline: [
-      100, 105, 110, 120, 130, 138, 136, 145, 155, 158, 152, 165, 175, 195, 193,
-      205, 218, 232, 250, 262, 280, 295, 307,
-    ],
     detailHeadline: "SPI Defensiv — Ruhig investieren, gut schlafen",
     longDescription: [
       "Nicht jeder Anleger sucht die maximale Rendite. Viele möchten vor allem eines: Ruhig schlafen können. Genau dafür haben wir die SPI Defensiv Strategie entwickelt.",
@@ -173,30 +151,14 @@ export const STRATEGIES: Strategy[] = [
       benchmark: "60/40-Portfolio",
       backtest: "2016 – 2026",
     },
-    curve: {
-      // Smoothed up to ~307 to match +207% with shallower dips (~-6.8% max DD).
-      strategy: [
-        100, 103, 105, 108, 110, 113, 116, 120, 125, 128, 130, 129, 132, 134,
-        137, 140, 138, 142, 147, 152, 158, 162, 157, 160, 164, 170, 178, 182,
-        188, 193, 200, 206, 202, 198, 208, 215, 214, 218, 225, 232, 242, 252,
-        262, 273, 283, 294, 302, 307,
-      ],
-      // User: "same as SPI Breakout benchmark (both use SPI)".
-      benchmark: [
-        100, 102, 104, 106, 108, 110, 114, 118, 122, 126, 128, 130, 132, 130,
-        128, 132, 134, 131, 135, 140, 145, 148, 150, 155, 158, 160, 128, 138,
-        148, 155, 158, 162, 168, 172, 178, 180, 175, 170, 162, 155, 152, 158,
-        162, 165, 168, 170, 168, 165, 170, 175, 180, 185, 188, 192, 196, 198,
-        200, 202, 204, 206, 208,
-      ],
-      benchmarkLabel: "Buy & Hold SPI",
-    },
   },
 
   {
     slug: "us-tech-growth",
     name: "US Tech Growth",
     tagline: "Nasdaq 100, Offensiv",
+    subtitle: "Nasdaq 100 Growth",
+    highlight: "Renditestärkste Strategie: +859% in 10 Jahren",
     pa: "24.8% p.a.",
     total: "+859%",
     benchLabel: "Nasdaq",
@@ -205,10 +167,6 @@ export const STRATEGIES: Strategy[] = [
     benchDd: "-35.6%",
     shortDescription:
       "Für Anleger, die Wachstum suchen, aber nicht jedem Trend blind hinterherlaufen wollen.",
-    sparkline: [
-      100, 130, 170, 200, 180, 250, 300, 350, 280, 320, 400, 450, 380, 350, 420,
-      500, 550, 600, 700, 800, 860, 920, 960,
-    ],
     detailHeadline:
       "US Tech Growth — Das Wachstum der Tech-Giganten einfangen",
     longDescription: [
@@ -239,27 +197,14 @@ export const STRATEGIES: Strategy[] = [
       benchmark: "Nasdaq 100 Total Return",
       backtest: "2016 – 2026",
     },
-    curve: {
-      strategy: [
-        100, 115, 130, 150, 170, 190, 200, 210, 230, 250, 240, 220, 200, 190,
-        180, 195, 210, 230, 250, 280, 300, 320, 350, 380, 400, 420, 380, 350,
-        320, 350, 400, 450, 500, 480, 450, 420, 400, 380, 350, 370, 400, 450,
-        500, 550, 600, 650, 700, 750, 800, 860, 900, 960,
-      ],
-      benchmark: [
-        100, 110, 120, 135, 150, 170, 180, 195, 210, 230, 250, 240, 230, 220,
-        210, 230, 250, 275, 300, 330, 360, 380, 400, 430, 450, 470, 380, 350,
-        340, 380, 420, 460, 500, 490, 470, 450, 440, 420, 400, 430, 460, 500,
-        540, 580, 610, 630, 650, 671,
-      ],
-      benchmarkLabel: "Buy & Hold Nasdaq 100",
-    },
   },
 
   {
     slug: "europa-breakout",
     name: "Europa Breakout",
     tagline: "HDAX, Offensiv",
+    subtitle: "DAX + MDAX im Trend",
+    highlight: "Grösste Outperformance: +730% vs +161%",
     pa: "23.1% p.a.",
     total: "+730%",
     benchLabel: "HDAX",
@@ -268,10 +213,6 @@ export const STRATEGIES: Strategy[] = [
     benchDd: "-38.8%",
     shortDescription:
       "Für breit interessierte Anleger mit Blick auf Chancen jenseits der Schweiz.",
-    sparkline: [
-      100, 120, 150, 180, 165, 200, 240, 280, 250, 220, 280, 320, 300, 350, 400,
-      450, 500, 550, 620, 700, 750, 800, 830,
-    ],
     detailHeadline:
       "Europa Breakout — Die stärksten deutschen Aktien systematisch handeln",
     longDescription: [
@@ -300,21 +241,6 @@ export const STRATEGIES: Strategy[] = [
       trades: "ca. 8 / Jahr",
       benchmark: "HDAX Total Return",
       backtest: "2016 – 2026",
-    },
-    curve: {
-      strategy: [
-        100, 110, 120, 135, 150, 170, 180, 170, 165, 175, 190, 200, 210, 230,
-        250, 280, 260, 240, 250, 270, 290, 320, 350, 380, 400, 420, 380, 360,
-        350, 380, 420, 460, 500, 480, 460, 440, 420, 450, 480, 520, 560, 600,
-        650, 700, 750, 800, 830,
-      ],
-      benchmark: [
-        100, 105, 110, 115, 120, 128, 132, 128, 125, 130, 135, 140, 145, 150,
-        155, 162, 155, 148, 152, 158, 165, 170, 175, 180, 185, 190, 170, 160,
-        155, 165, 175, 185, 195, 190, 185, 180, 178, 185, 190, 200, 210, 220,
-        230, 240, 250, 258, 261,
-      ],
-      benchmarkLabel: "Buy & Hold HDAX",
     },
   },
 ];
