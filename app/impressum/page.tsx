@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 
+import { DisclaimerParagraphs } from "@/components/disclaimer";
 import { DraftBanner, PageShell } from "@/components/page-shell";
 
 export const metadata: Metadata = {
@@ -70,34 +71,7 @@ export default function ImpressumPage() {
             <h2 className="text-[11px] uppercase tracking-[0.2em] text-secondary">
               Disclaimer
             </h2>
-            <p className="mt-4">
-              aktienpost.ch ist ein Informationsdienst der OWITA AG und bietet
-              keine Anlageberatung und keine Anlagevermittlung. Die
-              bereitgestellten Signale, Analysen und Informationen stellen
-              keine Aufforderung zum Kauf oder Verkauf von Wertpapieren dar.
-              Eine Anlageentscheidung sollte keinesfalls ausschliesslich auf
-              diese Informationen gestützt sein.
-            </p>
-            <p className="mt-4">
-              Die dargestellten Backtests und Performancekennzahlen basieren
-              auf historischen Daten und sind rückwirkend berechnet (siehe
-              Glossar: Backtest). Die Wertentwicklung in der Vergangenheit
-              ist kein Indikator für zukünftige Ergebnisse. Backtest-Resultate
-              unterliegen Survivorship Bias.
-            </p>
-            <p className="mt-4">
-              Anlageentscheide sollten stets im Portfoliokontext getroffen
-              werden und Ihre persönliche Situation, Risikobereitschaft und
-              Risikofähigkeit berücksichtigen. Jede Entscheidung, Geschäfte
-              zu tätigen oder nicht zu tätigen, wird eigenverantwortlich
-              getroffen. Wir empfehlen, gegebenenfalls einen Anlage-, Steuer-
-              oder Rechtsberater zu konsultieren.
-            </p>
-            <p className="mt-4">
-              aktienpost.ch untersteht keiner prudentiellen Aufsicht. Die
-              OWITA AG behält sich das Recht vor, die Handelsstrategien
-              jederzeit und ohne vorhergehende Ankündigung weiterzuentwickeln.
-            </p>
+            <DisclaimerParagraphs />
           </div>
         </div>
       </section>

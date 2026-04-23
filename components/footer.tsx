@@ -1,5 +1,7 @@
 import Link from "next/link";
 
+import { DISCLAIMER_TEXT } from "@/components/disclaimer";
+
 interface Col {
   heading: string;
   items: Array<{ href: string; label: string }>;
@@ -72,15 +74,7 @@ export function Footer() {
 
       <div className="border-t border-line">
         <div className="container flex flex-col gap-3 py-8 text-xs leading-relaxed text-muted md:flex-row md:items-start md:justify-between">
-          <p className="max-w-3xl">
-            aktienpost.ch ist ein Informationsdienst der OWITA AG und bietet
-            keine Anlageberatung und keine Anlagevermittlung. Die
-            bereitgestellten Signale, Analysen und Informationen stellen
-            weder eine Empfehlung noch eine Aufforderung zum Kauf oder
-            Verkauf von Wertpapieren dar. Vergangene Wertentwicklung ist
-            kein verlässlicher Indikator für zukünftige Ergebnisse.
-            Backtests unterliegen Survivorship Bias.
-          </p>
+          <p className="max-w-3xl">{DISCLAIMER_TEXT}</p>
           <p className="md:text-right">
             © {new Date().getFullYear()} OWITA AG — aktienpost.ch
           </p>

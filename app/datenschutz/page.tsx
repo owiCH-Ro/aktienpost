@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 
+import { DisclaimerParagraphs } from "@/components/disclaimer";
 import { DraftBanner, PageShell } from "@/components/page-shell";
 
 export const metadata: Metadata = {
@@ -95,6 +96,10 @@ export default function DatenschutzPage() {
               </a>
               .
             </p>
+          </Block>
+
+          <Block heading="Disclaimer">
+            <DisclaimerParagraphs className="mt-4 first:mt-0" />
           </Block>
         </div>
       </section>

@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 
+import { DisclaimerParagraphs } from "@/components/disclaimer";
 import { DraftBanner, PageShell } from "@/components/page-shell";
 
 export const metadata: Metadata = {
@@ -93,6 +94,10 @@ export default function AgbPage() {
               diesen AGB ist ausschliesslich das zuständige Gericht am Sitz
               der OWITA AG zuständig. Es gilt Schweizer Recht.
             </p>
+          </Clause>
+
+          <Clause n="8" heading="Disclaimer">
+            <DisclaimerParagraphs className="mt-4 first:mt-0" />
           </Clause>
         </div>
       </section>
