@@ -1,11 +1,12 @@
 import type { Metadata } from "next";
 
+import { ContactForm } from "@/components/contact-form";
 import { PageShell } from "@/components/page-shell";
 
 export const metadata: Metadata = {
   title: "Kontakt — aktienpost.ch",
   description:
-    "Fragen zu unseren Strategien, zum Abonnement oder zur Umsetzung der Signale? Wir antworten in der Regel innerhalb von 24 Stunden — info@aktienpost.ch.",
+    "Fragen zu unseren Strategien, zum Abonnement oder zur Umsetzung der Signale? Wir antworten in der Regel innerhalb von 24 Stunden.",
 };
 
 export default function KontaktPage() {
@@ -26,45 +27,21 @@ export default function KontaktPage() {
       </section>
 
       <section>
-        <div className="container grid gap-10 py-14 lg:grid-cols-2 lg:gap-16 lg:py-20">
-          <div className="rounded-xl border border-line bg-white p-8">
-            <h2 className="text-[11px] uppercase tracking-[0.2em] text-secondary">
-              E-Mail
-            </h2>
-            <p className="mt-5 font-serif text-[28px] text-navy">
+        <div className="container py-14 lg:py-20">
+          <div className="mx-auto max-w-2xl">
+            <ContactForm />
+
+            <p className="mt-8 text-center text-sm text-secondary">
+              Oder schreiben Sie uns direkt:{" "}
               <a
                 href="mailto:info@aktienpost.ch"
-                className="transition-colors hover:text-gold"
+                className="font-medium text-navy underline underline-offset-2 hover:text-gold"
               >
                 info@aktienpost.ch
               </a>
             </p>
-            <p className="mt-4 text-sm leading-relaxed text-secondary">
-              Für allgemeine Fragen, Feedback oder Support rund um Ihr
-              Abonnement.
-            </p>
-          </div>
 
-          <div className="rounded-xl border border-line bg-white p-8">
-            <h2 className="text-[11px] uppercase tracking-[0.2em] text-secondary">
-              Postadresse
-            </h2>
-            <address className="mt-5 not-italic font-serif text-[20px] leading-[1.5] text-navy">
-              OWITA AG
-              <br />
-              [Adresse]
-              <br />
-              Schweiz
-            </address>
-            <p className="mt-4 text-sm leading-relaxed text-secondary">
-              Für formelle Korrespondenz.
-            </p>
-          </div>
-        </div>
-
-        <div className="container pb-16 lg:pb-24">
-          <div className="mx-auto max-w-3xl rounded-lg border border-line bg-cream-dark/30 px-6 py-5">
-            <p className="text-sm italic leading-relaxed text-secondary">
+            <p className="mx-auto mt-10 max-w-xl rounded-lg border border-line bg-cream-dark/30 px-6 py-5 text-center text-sm italic leading-relaxed text-secondary">
               Bitte beachten Sie: Wir bieten keinen telefonischen Support und
               keine individuelle Anlageberatung an. Fragen zur generellen
               Funktionsweise der Strategien und zum Service beantworten wir
