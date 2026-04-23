@@ -4,6 +4,7 @@ import { Faq } from "@/components/faq";
 import { Footer } from "@/components/footer";
 import { HeroChart } from "@/components/hero-chart";
 import { Nav } from "@/components/nav";
+import { PortfolioCombinations } from "@/components/portfolio-combinations";
 import { Sparkline } from "@/components/sparkline";
 import { StrategyTabs } from "@/components/strategy-tabs";
 import chartData from "@/data/chart_data.json";
@@ -24,6 +25,7 @@ export default function Home() {
       <PerformanceCards />
       <HowItWorks />
       <BankComparison />
+      <PortfolioCombinations />
       <Pricing />
       <FaqSection />
       <FinalCta />
