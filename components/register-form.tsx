@@ -8,15 +8,21 @@ type Status =
   | { kind: "success" }
   | { kind: "error"; message: string };
 
-const PLANS = [
-  { value: "basis", label: "Basis — CHF 49 / Monat" },
-  { value: "plus", label: "Plus — CHF 99 / Monat" },
-  { value: "premium", label: "Premium — CHF 149 / Monat" },
-] as const;
+type PlanKey = "basis" | "plus" | "premium";
 
-export function RegisterForm() {
+const PLANS: Array<{ value: PlanKey; label: string; price: string }> = [
+  { value: "basis", label: "Basis", price: "CHF 49 / Monat" },
+  { value: "plus", label: "Plus", price: "CHF 99 / Monat" },
+  { value: "premium", label: "Premium", price: "CHF 149 / Monat" },
+];
+
+const isPlan = (v: string | undefined): v is PlanKey =>
+  v === "basis" || v === "plus" || v === "premium";
+
+export function RegisterForm({ defaultPlan }: { defaultPlan?: string }) {
   const [status, setStatus] = useState<Status>({ kind: "idle" });
   const [fieldErrors, setFieldErrors] = useState<Record<string, string>>({});
+  const initialPlan: PlanKey = isPlan(defaultPlan) ? defaultPlan : "plus";
 
   async function onSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
@@ -26,10 +32,12 @@ export function RegisterForm() {
     const form = e.currentTarget;
     const fd = new FormData(form);
     const payload = {
-      name: String(fd.get("name") || ""),
+      vorname: String(fd.get("vorname") || ""),
+      nachname: String(fd.get("nachname") || ""),
       email: String(fd.get("email") || ""),
-      password: String(fd.get("password") || ""),
       plan: String(fd.get("plan") || ""),
+      telefon: String(fd.get("telefon") || ""),
+      referral: String(fd.get("referral") || ""),
       website: String(fd.get("website") || ""), // honeypot
     };
 
@@ -51,32 +59,24 @@ export function RegisterForm() {
         setStatus({ kind: "idle" });
         return;
       }
-      if (data?.error === "email_exists") {
-        setFieldErrors({
-          email:
-            "Diese E-Mail-Adresse ist bereits registriert. Bitte melden Sie sich an oder verwenden Sie eine andere Adresse.",
-        });
-        setStatus({ kind: "idle" });
-        return;
-      }
       if (data?.error === "rate_limited") {
         setStatus({
           kind: "error",
           message:
-            "Zu viele Registrierungsversuche. Bitte versuchen Sie es später erneut.",
+            "Zu viele Anmeldungen von dieser Verbindung. Bitte versuchen Sie es in einer Stunde erneut.",
         });
         return;
       }
       setStatus({
         kind: "error",
         message:
-          "Die Registrierung konnte nicht abgeschlossen werden. Bitte versuchen Sie es erneut oder schreiben Sie an info@aktienpost.ch.",
+          "Die Anmeldung konnte nicht gesendet werden. Bitte versuchen Sie es erneut oder schreiben Sie direkt an info@aktienpost.ch.",
       });
     } catch {
       setStatus({
         kind: "error",
         message:
-          "Die Registrierung konnte nicht abgeschlossen werden. Bitte versuchen Sie es erneut oder schreiben Sie an info@aktienpost.ch.",
+          "Die Anmeldung konnte nicht gesendet werden. Bitte versuchen Sie es erneut oder schreiben Sie direkt an info@aktienpost.ch.",
       });
     }
   }
@@ -85,7 +85,7 @@ export function RegisterForm() {
     return (
       <div className="rounded-xl border border-bullish/30 bg-bullish/5 p-8">
         <h3 className="font-serif text-[22px] text-navy">
-          Vielen Dank für Ihre Registrierung.
+          Vielen Dank für Ihre Anmeldung!
         </h3>
         <p className="mt-3 text-[15px] leading-relaxed text-ink/85">
           Wir werden uns innerhalb von 24 Stunden bei Ihnen melden, um Ihr
@@ -103,14 +103,25 @@ export function RegisterForm() {
       className="flex flex-col gap-5 rounded-xl border border-line bg-white p-8"
       noValidate
     >
-      <Field
-        label="Name"
-        name="name"
-        type="text"
-        autoComplete="name"
-        required
-        error={fieldErrors.name}
-      />
+      <div className="grid gap-5 sm:grid-cols-2">
+        <Field
+          label="Vorname"
+          name="vorname"
+          type="text"
+          autoComplete="given-name"
+          required
+          error={fieldErrors.vorname}
+        />
+        <Field
+          label="Nachname"
+          name="nachname"
+          type="text"
+          autoComplete="family-name"
+          required
+          error={fieldErrors.nachname}
+        />
+      </div>
+
       <Field
         label="E-Mail"
         name="email"
@@ -119,38 +130,48 @@ export function RegisterForm() {
         required
         error={fieldErrors.email}
       />
+
+      <fieldset className="flex flex-col gap-3">
+        <legend className="text-[11px] uppercase tracking-[0.18em] text-secondary">
+          Gewünschter Plan
+        </legend>
+        <div className="grid gap-3 sm:grid-cols-3">
+          {PLANS.map((p) => (
+            <PlanOption
+              key={p.value}
+              value={p.value}
+              label={p.label}
+              price={p.price}
+              defaultChecked={p.value === initialPlan}
+            />
+          ))}
+        </div>
+        {fieldErrors.plan && <ErrorMsg>{fieldErrors.plan}</ErrorMsg>}
+      </fieldset>
+
       <Field
-        label="Passwort (min. 8 Zeichen)"
-        name="password"
-        type="password"
-        autoComplete="new-password"
-        required
-        error={fieldErrors.password}
+        label="Telefonnummer (optional)"
+        name="telefon"
+        type="tel"
+        autoComplete="tel"
+        error={fieldErrors.telefon}
       />
 
       <label className="flex flex-col gap-2">
         <span className="text-[11px] uppercase tracking-[0.18em] text-secondary">
-          Gewünschter Plan
+          Wie sind Sie auf aktienpost.ch aufmerksam geworden?
+          <span className="ml-2 normal-case tracking-normal text-muted">
+            (optional)
+          </span>
         </span>
-        <select
-          name="plan"
-          defaultValue=""
-          required
-          className={inputClass(!!fieldErrors.plan)}
-        >
-          <option value="" disabled>
-            Bitte wählen …
-          </option>
-          {PLANS.map((p) => (
-            <option key={p.value} value={p.value}>
-              {p.label}
-            </option>
-          ))}
-        </select>
-        {fieldErrors.plan && <ErrorMsg>{fieldErrors.plan}</ErrorMsg>}
+        <textarea
+          name="referral"
+          rows={4}
+          className={inputClass(!!fieldErrors.referral)}
+        />
       </label>
 
-      {/* Honeypot */}
+      {/* Honeypot — hidden to humans, irresistible to naive bots. */}
       <label
         className="hidden"
         aria-hidden
@@ -178,11 +199,12 @@ export function RegisterForm() {
         disabled={submitting}
         className="self-start inline-flex items-center justify-center rounded-md bg-gold px-6 py-3 text-[15px] font-medium text-white transition-colors hover:bg-gold-dark disabled:opacity-60"
       >
-        {submitting ? "Wird registriert …" : "Registrieren"}
+        {submitting ? "Wird gesendet …" : "Jetzt anmelden"}
       </button>
 
       <p className="text-[12px] leading-relaxed text-muted">
-        Mit der Registrierung akzeptieren Sie unsere{" "}
+        Nach dem Absenden melden wir uns innerhalb von 24 Stunden, um Ihr
+        Abonnement zu aktivieren. Mit dem Absenden akzeptieren Sie unsere{" "}
         <a className="underline underline-offset-2 hover:text-navy" href="/agb">
           AGB
         </a>{" "}
@@ -190,13 +212,50 @@ export function RegisterForm() {
         <a className="underline underline-offset-2 hover:text-navy" href="/datenschutz">
           Datenschutzerklärung
         </a>
-        . Die 30-tägige Geld-zurück-Garantie beginnt mit der Aktivierung
-        Ihres Abonnements.
+        .
       </p>
     </form>
   );
 }
 
+// ---------------------------------------------------------------------------
+// Plan radio card
+// ---------------------------------------------------------------------------
+
+function PlanOption({
+  value,
+  label,
+  price,
+  defaultChecked,
+}: {
+  value: PlanKey;
+  label: string;
+  price: string;
+  defaultChecked: boolean;
+}) {
+  return (
+    <label className="group relative flex cursor-pointer flex-col gap-1 rounded-lg border border-line bg-cream-dark/20 px-4 py-3 transition-colors has-[:checked]:border-gold has-[:checked]:bg-gold/5">
+      <input
+        type="radio"
+        name="plan"
+        value={value}
+        defaultChecked={defaultChecked}
+        className="peer sr-only"
+      />
+      <span className="font-serif text-[17px] text-navy">{label}</span>
+      <span className="text-[12px] uppercase tracking-[0.15em] text-secondary">
+        {price}
+      </span>
+      <span
+        aria-hidden
+        className="pointer-events-none absolute right-3 top-3 h-3 w-3 rounded-full border border-line bg-white transition-all peer-checked:border-gold peer-checked:bg-gold"
+      />
+    </label>
+  );
+}
+
+// ---------------------------------------------------------------------------
+// Small presentational helpers
 // ---------------------------------------------------------------------------
 
 function inputClass(hasError: boolean): string {

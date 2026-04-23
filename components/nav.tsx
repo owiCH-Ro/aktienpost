@@ -1,7 +1,5 @@
 import Link from "next/link";
 
-import { AuthSlot } from "@/components/auth-slot";
-
 const links: Array<{ href: string; label: string }> = [
   { href: "/#strategien", label: "Strategien" },
   { href: "/#performance", label: "Performance" },
@@ -36,23 +34,19 @@ export function Nav() {
           ))}
         </nav>
 
-        <div className="flex items-center gap-4">
-          <AuthSlot className="hidden md:inline-flex" />
+        <Link
+          href="/#preise"
+          className="hidden md:inline-flex items-center gap-2 rounded-md border border-gold bg-gold px-4 py-2 text-sm font-medium text-white shadow-sm transition-colors hover:bg-gold-dark hover:border-gold-dark"
+        >
+          30-Tage Geld-zurück
+        </Link>
 
-          <Link
-            href="/#preise"
-            className="hidden md:inline-flex items-center gap-2 rounded-md border border-gold bg-gold px-4 py-2 text-sm font-medium text-white shadow-sm transition-colors hover:bg-gold-dark hover:border-gold-dark"
-          >
-            30-Tage Geld-zurück
-          </Link>
-
-          <Link
-            href="/#preise"
-            className="md:hidden inline-flex items-center rounded-md bg-gold px-3 py-2 text-xs font-medium text-white"
-          >
-            Starten
-          </Link>
-        </div>
+        <Link
+          href="/#preise"
+          className="md:hidden inline-flex items-center rounded-md bg-gold px-3 py-2 text-xs font-medium text-white"
+        >
+          Starten
+        </Link>
       </div>
     </header>
   );

@@ -340,6 +340,7 @@ function BankComparison() {
 function Pricing() {
   const plans = [
     {
+      slug: "basis",
       name: "Basis",
       monthly: "49",
       yearly: "490",
@@ -352,6 +353,7 @@ function Pricing() {
       featured: false,
     },
     {
+      slug: "plus",
       name: "Plus",
       monthly: "99",
       yearly: "990",
@@ -365,6 +367,7 @@ function Pricing() {
       featured: true,
     },
     {
+      slug: "premium",
       name: "Premium",
       monthly: "149",
       yearly: "1'490",
@@ -444,8 +447,8 @@ function Pricing() {
               </ul>
 
               <div className="mt-10 flex flex-col gap-3">
-                <a
-                  href="#signup"
+                <Link
+                  href={`/anmelden?plan=${p.slug}`}
                   className={
                     p.featured
                       ? "inline-flex items-center justify-center rounded-md bg-gold px-5 py-3 text-sm font-medium text-white transition-colors hover:bg-gold-dark"
@@ -453,7 +456,7 @@ function Pricing() {
                   }
                 >
                   {p.cta}
-                </a>
+                </Link>
                 <span className="text-center text-xs text-muted">
                   30 Tage Geld-zurück-Garantie
                 </span>
