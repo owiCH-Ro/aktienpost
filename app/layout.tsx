@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
 import { Inter, Source_Serif_4 } from "next/font/google";
+
+import { MetaPixel, MetaPixelNoscript } from "@/components/meta-pixel";
 import "./globals.css";
 
 const inter = Inter({
@@ -60,7 +62,13 @@ export default function RootLayout({
 }) {
   return (
     <html lang="de-CH" className={`${inter.variable} ${serif.variable}`}>
-      <body>{children}</body>
+      <head>
+        <MetaPixel />
+      </head>
+      <body>
+        <MetaPixelNoscript />
+        {children}
+      </body>
     </html>
   );
 }

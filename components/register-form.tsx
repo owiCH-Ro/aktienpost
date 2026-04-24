@@ -2,6 +2,8 @@
 
 import { useState } from "react";
 
+import { fbqTrack } from "@/components/meta-pixel";
+
 type Status =
   | { kind: "idle" }
   | { kind: "submitting" }
@@ -51,6 +53,11 @@ export function RegisterForm({ defaultPlan }: { defaultPlan?: string }) {
 
       if (res.ok && data.ok) {
         setStatus({ kind: "success" });
+        // Meta Pixel Lead conversion — fires once per successful registration.
+        fbqTrack("Lead", {
+          content_name: "Anmeldung",
+          content_category: payload.plan || undefined,
+        });
         form.reset();
         return;
       }
