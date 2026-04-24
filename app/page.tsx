@@ -46,15 +46,15 @@ function Hero() {
           <span className="eyebrow">Börsensignale aus der Schweiz</span>
 
           <h1 className="mt-6 font-serif text-[42px] leading-[1.08] text-navy sm:text-[54px] lg:text-[62px]">
-            Ihre Bank verwaltet Ihr Geld.
+            +350% mit Schweizer Aktien.
             <br />
-            <span className="italic">Wir liefern die bessere Rendite.</span>
+            <span className="italic">Vier Strategien, die den Markt schlagen.</span>
           </h1>
 
           <p className="mt-7 max-w-xl text-base leading-relaxed text-secondary sm:text-lg">
-            Börsensignale für Schweizer Privatanleger — wissenschaftlich
-            getestet, einfach umzusetzen. 4 bewährte Strategien. Ab CHF 49 im
-            Monat.
+            Algorithmische Börsensignale für Schweizer Privatanleger —
+            wissenschaftlich getestet, einfach umzusetzen. 5 Minuten pro
+            Signal. Ab CHF 49 im Monat.
           </p>
 
           <div className="mt-9 flex flex-col gap-3 sm:flex-row">
