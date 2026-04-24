@@ -36,11 +36,13 @@ export default function AnmeldenPage({ searchParams }: Props) {
       <section>
         <div className="container py-14 lg:py-20">
           <div className="mx-auto max-w-2xl">
-            {/* Expectation-setter above the form — spells out the
+            <RegisterForm defaultPlan={defaultPlan} />
+
+            {/* Expectation-setter below the form — spells out the
                 onboarding flow so the applicant knows what happens
                 between "Submit" and "first signal email". Reduces
                 the drop-off where people expect an instant login. */}
-            <div className="mb-8 rounded-xl border border-line bg-cream-dark/30 p-7">
+            <div className="mt-8 rounded-xl border border-line bg-cream-dark/30 p-7">
               <h2 className="font-serif text-[20px] leading-tight text-navy sm:text-[22px]">
                 So geht es nach der Anmeldung weiter
               </h2>
@@ -63,8 +65,6 @@ export default function AnmeldenPage({ searchParams }: Props) {
                 30 Tage Geld-zurück-Garantie — ohne Wenn und Aber.
               </p>
             </div>
-
-            <RegisterForm defaultPlan={defaultPlan} />
 
             <p className="mt-8 text-center text-sm text-secondary">
               Fragen vor der Anmeldung?{" "}
