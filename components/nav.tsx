@@ -6,6 +6,7 @@ const links: Array<{ href: string; label: string }> = [
   { href: "/#preise", label: "Preise" },
   { href: "/blog", label: "Blog" },
   { href: "/ueber-mich", label: "Über mich" },
+  { href: "/kontakt", label: "Kontakt" },
   { href: "/beispiel-signal", label: "Beispiel-Signal" },
 ];
 
