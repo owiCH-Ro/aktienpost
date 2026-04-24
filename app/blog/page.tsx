@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 
 import { PageShell } from "@/components/page-shell";
+import { formatDateDe, getAllPosts } from "@/lib/blog";
 
 export const metadata: Metadata = {
   title: "Blog — aktienpost.ch",
@@ -10,6 +11,8 @@ export const metadata: Metadata = {
 };
 
 export default function BlogPage() {
+  const posts = getAllPosts();
+
   return (
     <PageShell>
       <section className="border-b border-line">
@@ -27,31 +30,52 @@ export default function BlogPage() {
 
       <section>
         <div className="container py-14 lg:py-20">
-          {/* Coming-soon card. Keeping the page in the nav now (instead
-              of waiting until the first post ships) sets reader
-              expectations and gives SEO a stable URL for inbound links. */}
-          <div className="mx-auto max-w-2xl rounded-xl border border-line bg-white p-10 text-center">
-            <div className="text-[11px] uppercase tracking-[0.22em] text-gold">
-              In Kürze
+          {posts.length === 0 ? (
+            <div className="mx-auto max-w-2xl rounded-xl border border-line bg-white p-10 text-center">
+              <div className="text-[11px] uppercase tracking-[0.22em] text-gold">
+                In Kürze
+              </div>
+              <h2 className="mt-4 font-serif text-[28px] leading-tight text-navy sm:text-[32px]">
+                Unsere ersten Artikel erscheinen{" "}
+                <span className="italic">in Kürze</span>.
+              </h2>
             </div>
-            <h2 className="mt-4 font-serif text-[28px] leading-tight text-navy sm:text-[32px]">
-              Unsere ersten Artikel erscheinen{" "}
-              <span className="italic">in Kürze</span>.
-            </h2>
-            <p className="mt-5 text-[15px] leading-relaxed text-secondary">
-              Melden Sie sich an, um benachrichtigt zu werden, sobald der
-              erste Artikel live ist.
-            </p>
-
-            <div className="mt-8">
-              <Link
-                href="/anmelden"
-                className="inline-flex items-center justify-center rounded-md bg-gold px-6 py-3 text-[15px] font-medium text-white transition-colors hover:bg-gold-dark"
-              >
-                Jetzt anmelden
-              </Link>
+          ) : (
+            <div className="grid gap-6 md:grid-cols-2">
+              {posts.map((post) => (
+                <article
+                  key={post.slug}
+                  className="flex flex-col rounded-xl border border-line bg-cream-dark/30 p-7 transition-colors hover:border-gold/40"
+                >
+                  <div className="text-[11px] uppercase tracking-[0.22em] text-gold">
+                    {post.category}
+                  </div>
+                  <h2 className="mt-4 font-serif text-[24px] leading-tight text-navy sm:text-[26px]">
+                    <Link
+                      href={`/blog/${post.slug}`}
+                      className="hover:text-gold"
+                    >
+                      {post.title}
+                    </Link>
+                  </h2>
+                  <p className="mt-4 flex-1 text-[15px] leading-relaxed text-ink/80">
+                    {post.excerpt}
+                  </p>
+                  <div className="mt-6 flex items-center justify-between border-t border-line pt-4 text-[13px] text-secondary">
+                    <span>
+                      {formatDateDe(post.date)} · {post.readingTime}
+                    </span>
+                    <Link
+                      href={`/blog/${post.slug}`}
+                      className="font-medium text-gold hover:text-gold-dark"
+                    >
+                      Weiterlesen →
+                    </Link>
+                  </div>
+                </article>
+              ))}
             </div>
-          </div>
+          )}
         </div>
       </section>
     </PageShell>
