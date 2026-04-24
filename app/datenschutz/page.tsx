@@ -31,15 +31,23 @@ export default function DatenschutzPage() {
       <section>
         <div className="container max-w-3xl space-y-10 py-14 text-[15px] leading-relaxed text-ink/85 lg:py-20">
           <Block heading="Verantwortliche Stelle">
-            <p>
-              OWITA AG, [Adresse], Schweiz. Kontakt:{" "}
+            <address className="not-italic font-serif text-[17px] leading-relaxed text-navy">
+              OWITA AG
+              <br />
+              Obertor 8
+              <br />
+              4915 St. Urban
+              <br />
+              Schweiz
+            </address>
+            <p className="mt-3">
+              E-Mail:{" "}
               <a
                 className="text-navy underline underline-offset-2 hover:text-gold"
                 href="mailto:info@aktienpost.ch"
               >
                 info@aktienpost.ch
               </a>
-              .
             </p>
           </Block>
 

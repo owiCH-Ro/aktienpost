@@ -19,6 +19,9 @@ const BETREFF_OPTIONS = [
 export function ContactForm() {
   const [status, setStatus] = useState<Status>({ kind: "idle" });
   const [fieldErrors, setFieldErrors] = useState<Record<string, string>>({});
+  // Controlled because the phone input only renders when the user
+  // asks to be called back — keeps the base form lean.
+  const [wantsPhone, setWantsPhone] = useState(false);
 
   async function onSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
@@ -32,6 +35,9 @@ export function ContactForm() {
       email: String(fd.get("email") || ""),
       betreff: String(fd.get("betreff") || ""),
       nachricht: String(fd.get("nachricht") || ""),
+      wantsPhone: fd.get("wantsPhone") === "on",
+      phone: String(fd.get("phone") || ""),
+      wantsDemo: fd.get("wantsDemo") === "on",
       website: String(fd.get("website") || ""), // honeypot
     };
 
@@ -145,6 +151,49 @@ export function ContactForm() {
         />
         {fieldErrors.nachricht && <ErrorMsg>{fieldErrors.nachricht}</ErrorMsg>}
       </label>
+
+      {/* Optional call-back + demo checkboxes. Both funnel through
+          to the /api/contact email body so Oliver can triage faster. */}
+      <div className="flex flex-col gap-3 rounded-lg border border-line bg-cream-dark/30 px-4 py-4">
+        <label className="flex items-start gap-3 text-[14px] leading-relaxed text-ink/85">
+          <input
+            type="checkbox"
+            name="wantsPhone"
+            checked={wantsPhone}
+            onChange={(e) => setWantsPhone(e.target.checked)}
+            className="mt-[3px] h-4 w-4 flex-none accent-gold"
+          />
+          <span>Ich möchte telefonisch kontaktiert werden</span>
+        </label>
+
+        {wantsPhone && (
+          <label className="mt-1 flex flex-col gap-2 pl-7">
+            <span className="text-[11px] uppercase tracking-[0.18em] text-secondary">
+              Telefonnummer
+            </span>
+            <input
+              name="phone"
+              type="tel"
+              autoComplete="tel"
+              placeholder="+41 …"
+              className={inputClass(!!fieldErrors.phone)}
+            />
+            {fieldErrors.phone && <ErrorMsg>{fieldErrors.phone}</ErrorMsg>}
+          </label>
+        )}
+
+        <label className="flex items-start gap-3 text-[14px] leading-relaxed text-ink/85">
+          <input
+            type="checkbox"
+            name="wantsDemo"
+            className="mt-[3px] h-4 w-4 flex-none accent-gold"
+          />
+          <span>
+            Ich möchte eine persönliche Vorführung der Strategien (ca.
+            15&nbsp;Min.)
+          </span>
+        </label>
+      </div>
 
       {/* Honeypot — hidden to humans, irresistible to naive bots. */}
       <label

@@ -36,6 +36,34 @@ export default function AnmeldenPage({ searchParams }: Props) {
       <section>
         <div className="container py-14 lg:py-20">
           <div className="mx-auto max-w-2xl">
+            {/* Expectation-setter above the form — spells out the
+                onboarding flow so the applicant knows what happens
+                between "Submit" and "first signal email". Reduces
+                the drop-off where people expect an instant login. */}
+            <div className="mb-8 rounded-xl border border-line bg-cream-dark/30 p-7">
+              <h2 className="font-serif text-[20px] leading-tight text-navy sm:text-[22px]">
+                So geht es nach der Anmeldung weiter
+              </h2>
+              <ol className="mt-5 space-y-4 text-[14.5px] leading-relaxed text-ink/85">
+                {[
+                  "Sie erhalten innerhalb von 24 Stunden eine persönliche E-Mail von Oliver Widmer mit einer Übersicht aller aktuell offenen Positionen.",
+                  "Sie erhalten eine Rechnung per E-Mail (OWITA AG). Die Bezahlung erfolgt bequem auf Rechnung — keine Kreditkarte nötig.",
+                  "Sobald Ihr Zugang aktiviert ist, erhalten Sie jeden Morgen vor Börsenöffnung Ihren persönlichen Portfoliobericht per E-Mail.",
+                  "Bei neuen Kauf- oder Verkaufssignalen werden Sie sofort informiert.",
+                ].map((step, i) => (
+                  <li key={i} className="flex gap-3">
+                    <span className="flex h-6 w-6 flex-none items-center justify-center rounded-full bg-gold/15 font-serif text-[13px] font-semibold text-gold">
+                      {i + 1}
+                    </span>
+                    <span className="pt-[2px]">{step}</span>
+                  </li>
+                ))}
+              </ol>
+              <p className="mt-6 border-t border-line pt-4 text-center text-[13px] font-medium text-navy">
+                30 Tage Geld-zurück-Garantie — ohne Wenn und Aber.
+              </p>
+            </div>
+
             <RegisterForm defaultPlan={defaultPlan} />
 
             <p className="mt-8 text-center text-sm text-secondary">

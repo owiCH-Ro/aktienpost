@@ -21,8 +21,8 @@ export function StrategyTabs() {
         <div className="mx-auto max-w-3xl text-center">
           <span className="eyebrow">Strategien</span>
           <h2 className="mt-6 font-serif text-[34px] leading-tight text-navy sm:text-[44px]">
-            Vier Strategien,{" "}
-            <span className="italic">dreimal über dem Markt</span>.
+            Vier Strategien. 10 Jahre getestet.{" "}
+            <span className="italic">Jede übertrifft ihren Index.</span>
           </h2>
           <p className="mt-5 text-base leading-relaxed text-secondary sm:text-lg">
             Jede Strategie folgt einem eigenen, klaren Regelwerk — von

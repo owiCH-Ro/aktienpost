@@ -34,9 +34,9 @@ export default function ImpressumPage() {
             <address className="mt-3 not-italic font-serif text-[18px] leading-relaxed text-navy">
               OWITA AG
               <br />
-              [Strasse + Hausnummer]
+              Obertor 8
               <br />
-              [PLZ Ort]
+              4915 St. Urban
               <br />
               Schweiz
             </address>
@@ -56,7 +56,7 @@ export default function ImpressumPage() {
                   info@aktienpost.ch
                 </a>
               </li>
-              <li>UID: [CHE-xxx.xxx.xxx]</li>
+              <li>UID: CHE-227.653.561</li>
             </ul>
           </div>
 

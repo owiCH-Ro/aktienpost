@@ -11,6 +11,9 @@ interface ContactPayload {
   email?: unknown;
   betreff?: unknown;
   nachricht?: unknown;
+  wantsPhone?: unknown;
+  phone?: unknown;
+  wantsDemo?: unknown;
   /** Honeypot field. Real users leave this empty — bots fill it. */
   website?: unknown;
 }
@@ -59,12 +62,18 @@ export async function POST(req: Request) {
   const email = str(body.email, 254);
   const betreff = str(body.betreff, 64);
   const nachricht = str(body.nachricht, 5000);
+  const wantsPhone = body.wantsPhone === true;
+  const wantsDemo = body.wantsDemo === true;
+  const phone = wantsPhone ? str(body.phone, 40) : null;
 
   const errors: Record<string, string> = {};
   if (!name) errors.name = "Bitte geben Sie Ihren Namen an.";
   if (!email || !isEmail(email)) errors.email = "Bitte geben Sie eine gültige E-Mail-Adresse an.";
   if (!betreff || !ALLOWED_BETREFF.has(betreff)) errors.betreff = "Bitte wählen Sie einen Betreff.";
   if (!nachricht || nachricht.length < 10) errors.nachricht = "Bitte schreiben Sie eine kurze Nachricht (mind. 10 Zeichen).";
+  if (wantsPhone && (!phone || !/^[+\d][\d\s/().-]{5,}$/.test(phone))) {
+    errors.phone = "Bitte geben Sie eine gültige Telefonnummer an.";
+  }
 
   if (Object.keys(errors).length > 0) {
     return NextResponse.json({ ok: false, error: "validation", fields: errors }, { status: 400 });
@@ -72,11 +81,19 @@ export async function POST(req: Request) {
 
   // --- Send ---
   const subject = `[aktienpost.ch Kontakt] ${betreff} von ${name}`;
+  const phoneLine = wantsPhone
+    ? `Rückruf:  Ja${phone ? ` (${phone})` : ""}\n`
+    : `Rückruf:  Nein\n`;
+  const demoLine = wantsDemo
+    ? `Demo:     Ja (persönliche Vorführung, ca. 15 Min.)\n`
+    : `Demo:     Nein\n`;
   const text =
     `Neue Kontaktanfrage via aktienpost.ch\n\n` +
     `Name:     ${name}\n` +
     `E-Mail:   ${email}\n` +
     `Betreff:  ${betreff}\n` +
+    phoneLine +
+    demoLine +
     `\n` +
     `Nachricht:\n` +
     `-----------\n` +
