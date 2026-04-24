@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 
 import { PageShell } from "@/components/page-shell";
 
@@ -23,17 +24,22 @@ export default function UeberMichPage() {
       </section>
 
       <section>
-        <div className="container grid gap-12 py-16 lg:grid-cols-[320px_1fr] lg:gap-16 lg:py-20">
+        <div className="container grid gap-12 py-16 lg:grid-cols-[400px_1fr] lg:gap-16 lg:py-20">
           <aside className="self-start">
-            {/* Photo placeholder */}
-            <div
-              className="aspect-[4/5] w-full max-w-[320px] overflow-hidden rounded-xl border border-line bg-cream-dark/50"
-              aria-label="Foto Oliver Widmer"
-            >
-              <div className="flex h-full w-full items-center justify-center text-center text-[11px] uppercase tracking-[0.2em] text-muted">
-                Foto Oliver Widmer
-              </div>
-            </div>
+            {/* Real portrait. width/height are the source's intrinsic
+                dimensions (1536×1024); Tailwind's max-w-[400px] caps
+                the rendered size on the page while next/image keeps
+                the aspect ratio and serves an appropriately sized
+                variant. Subtle drop shadow mirrors the card treatment
+                used elsewhere on the site. */}
+            <Image
+              src="/oliver-widmer.png"
+              alt="Oliver Widmer, Gründer aktienpost.ch"
+              width={1536}
+              height={1024}
+              priority
+              className="h-auto w-full max-w-[400px] rounded-lg shadow-[0_1px_2px_rgba(15,23,42,0.06),0_10px_30px_-12px_rgba(15,23,42,0.18)]"
+            />
 
             <div className="mt-8 border-l-2 border-gold pl-5">
               <p className="font-serif text-lg text-navy">Oliver Widmer</p>
