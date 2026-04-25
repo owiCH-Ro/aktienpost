@@ -14,9 +14,9 @@ export default function ImpressumPage() {
       <DraftBanner />
 
       <section className="border-b border-line">
-        <div className="container py-14 lg:py-20">
+        <div className="container py-10 sm:py-14 lg:py-20">
           <span className="eyebrow">Rechtliches</span>
-          <h1 className="mt-6 font-serif text-[42px] leading-[1.08] text-navy sm:text-[54px]">
+          <h1 className="mt-6 font-serif text-[30px] leading-[1.1] text-navy sm:text-[42px] sm:leading-[1.08] lg:text-[54px]">
             Impressum
           </h1>
         </div>

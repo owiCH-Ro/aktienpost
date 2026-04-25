@@ -17,54 +17,58 @@ export function StrategyTabs() {
 
   return (
     <section id="strategien" className="border-b border-line">
-      <div className="container py-20 lg:py-28">
+      <div className="container py-12 sm:py-16 lg:py-28">
         <div className="mx-auto max-w-3xl text-center">
           <span className="eyebrow">Strategien</span>
-          <h2 className="mt-6 font-serif text-[34px] leading-tight text-navy sm:text-[44px]">
+          <h2 className="mt-5 font-serif text-[26px] leading-tight text-navy sm:mt-6 sm:text-[34px] lg:text-[44px]">
             Vier Strategien. 10 Jahre getestet.{" "}
             <span className="italic">Jede übertrifft ihren Index.</span>
           </h2>
-          <p className="mt-5 text-base leading-relaxed text-secondary sm:text-lg">
+          <p className="mt-4 text-[15px] leading-relaxed text-secondary sm:mt-5 sm:text-base lg:text-lg">
             Jede Strategie folgt einem eigenen, klaren Regelwerk — von
             defensiv bis wachstumsorientiert. Wählen Sie eine Strategie
             oder kombinieren Sie mehrere.
           </p>
         </div>
 
-        {/* Tab bar */}
-        <div
-          role="tablist"
-          aria-label="Strategien"
-          className="mt-12 flex flex-wrap gap-x-2 gap-y-0 border-b border-line"
-        >
-          {STRATEGIES.map((s) => {
-            const isActive = s.slug === active;
-            return (
-              <button
-                key={s.slug}
-                role="tab"
-                aria-selected={isActive}
-                onClick={() => setActive(s.slug)}
-                className={[
-                  "relative -mb-px px-4 py-3 text-sm font-medium transition-colors sm:px-6 sm:py-4 sm:text-[15px]",
-                  isActive
-                    ? "text-navy"
-                    : "text-secondary hover:text-navy",
-                ].join(" ")}
-              >
-                <span className="font-serif text-[17px] sm:text-[19px]">
-                  {s.name}
-                </span>
-                <span
-                  aria-hidden
+        {/* Tab bar — horizontal scroll on mobile so all 4 tabs stay readable
+            without wrapping. The negative margins + container padding let
+            the scrollable area extend edge-to-edge on small screens. */}
+        <div className="mt-8 -mx-4 overflow-x-auto px-4 sm:mt-12 sm:mx-0 sm:px-0">
+          <div
+            role="tablist"
+            aria-label="Strategien"
+            className="flex min-w-max gap-x-2 gap-y-0 border-b border-line sm:min-w-0 sm:flex-wrap"
+          >
+            {STRATEGIES.map((s) => {
+              const isActive = s.slug === active;
+              return (
+                <button
+                  key={s.slug}
+                  role="tab"
+                  aria-selected={isActive}
+                  onClick={() => setActive(s.slug)}
                   className={[
-                    "absolute inset-x-0 -bottom-px h-[2px] transition-all",
-                    isActive ? "bg-navy" : "bg-transparent",
+                    "relative -mb-px shrink-0 px-3 py-3 text-sm font-medium transition-colors sm:px-6 sm:py-4 sm:text-[15px]",
+                    isActive
+                      ? "text-navy"
+                      : "text-secondary hover:text-navy",
                   ].join(" ")}
-                />
-              </button>
-            );
-          })}
+                >
+                  <span className="whitespace-nowrap font-serif text-[15px] sm:text-[19px]">
+                    {s.name}
+                  </span>
+                  <span
+                    aria-hidden
+                    className={[
+                      "absolute inset-x-0 -bottom-px h-[2px] transition-all",
+                      isActive ? "bg-navy" : "bg-transparent",
+                    ].join(" ")}
+                  />
+                </button>
+              );
+            })}
+          </div>
         </div>
 
         {/* Tab panel */}
@@ -86,20 +90,20 @@ function TabPanel({ strategy: s }: { strategy: Strategy }) {
   }>)[s.slug];
 
   return (
-    <div className="grid gap-10 pt-10 lg:grid-cols-[1fr_1.15fr] lg:gap-14 lg:pt-14">
+    <div className="grid gap-8 pt-8 sm:gap-10 sm:pt-10 lg:grid-cols-[1fr_1.15fr] lg:gap-14 lg:pt-14">
       {/* Left column */}
       <div className="flex flex-col">
         <div className="text-[11px] uppercase tracking-[0.22em] text-gold">
           {s.subtitle}
         </div>
-        <h3 className="mt-3 font-serif text-[30px] leading-tight text-navy sm:text-[36px]">
+        <h3 className="mt-3 font-serif text-[24px] leading-tight text-navy sm:text-[30px] lg:text-[36px]">
           {s.name}
         </h3>
-        <p className="mt-5 text-[15px] leading-relaxed text-ink/85 sm:text-[16px]">
+        <p className="mt-4 text-[15px] leading-relaxed text-ink/85 sm:mt-5 sm:text-[16px]">
           {s.shortDescription}
         </p>
 
-        <div className="mt-7 grid grid-cols-2 gap-4">
+        <div className="mt-6 grid grid-cols-1 gap-3 sm:mt-7 sm:grid-cols-2 sm:gap-4">
           <MetricBox label="Benchmark" value={s.keyFacts.benchmark} />
           <MetricBox label="Aktionen / Jahr" value={s.tradesPerYear} />
         </div>
@@ -128,13 +132,13 @@ function TabPanel({ strategy: s }: { strategy: Strategy }) {
              animation fires on each selection — a nice tactile touch. */
           <div
             key={s.slug}
-            className="rounded-xl border border-line bg-white p-5 sm:p-6"
+            className="rounded-xl border border-line bg-white p-4 sm:p-5 lg:p-6"
           >
             <AnimatedLineChart
               data={entry.data}
               strategyLabel={entry.name}
               benchmarkLabel={entry.benchmarkLabel}
-              height={360}
+              heightClassName="h-[250px] sm:h-[320px] lg:h-[360px]"
             />
           </div>
         )}

@@ -13,9 +13,9 @@ export default function UeberMichPage() {
   return (
     <PageShell>
       <section className="border-b border-line">
-        <div className="container py-16 lg:py-24">
+        <div className="container py-10 sm:py-16 lg:py-24">
           <span className="eyebrow">Über mich</span>
-          <h1 className="mt-6 font-serif text-[42px] leading-[1.08] text-navy sm:text-[54px]">
+          <h1 className="mt-5 font-serif text-[30px] leading-[1.1] text-navy sm:mt-6 sm:text-[42px] sm:leading-[1.08] lg:text-[54px]">
             Warum ich aktienpost.ch
             <br />
             <span className="italic">gegründet habe</span>.
@@ -24,24 +24,22 @@ export default function UeberMichPage() {
       </section>
 
       <section>
-        <div className="container grid gap-12 py-16 lg:grid-cols-[400px_1fr] lg:gap-16 lg:py-20">
+        <div className="container grid gap-8 py-10 sm:gap-12 sm:py-16 lg:grid-cols-[400px_1fr] lg:gap-16 lg:py-20">
           <aside className="self-start">
             {/* Real portrait. width/height are the source's intrinsic
-                dimensions (1536×1024); Tailwind's max-w-[400px] caps
-                the rendered size on the page while next/image keeps
-                the aspect ratio and serves an appropriately sized
-                variant. Subtle drop shadow mirrors the card treatment
-                used elsewhere on the site. */}
+                dimensions (1536×1024); next/image keeps the aspect ratio
+                and serves an appropriately sized variant. The image fills
+                its column on mobile and caps at 400px on desktop. */}
             <Image
               src="/oliver-widmer.png"
               alt="Oliver Widmer, Gründer aktienpost.ch"
               width={1536}
               height={1024}
               priority
-              className="h-auto w-full max-w-[400px] rounded-lg shadow-[0_1px_2px_rgba(15,23,42,0.06),0_10px_30px_-12px_rgba(15,23,42,0.18)]"
+              className="h-auto w-full rounded-lg shadow-[0_1px_2px_rgba(15,23,42,0.06),0_10px_30px_-12px_rgba(15,23,42,0.18)] lg:max-w-[400px]"
             />
 
-            <div className="mt-8 border-l-2 border-gold pl-5">
+            <div className="mt-6 border-l-2 border-gold pl-5 sm:mt-8">
               <p className="font-serif text-lg text-navy">Oliver Widmer</p>
               <p className="mt-1 text-sm text-secondary">
                 Dipl. Ing. ETH
@@ -51,7 +49,7 @@ export default function UeberMichPage() {
             </div>
           </aside>
 
-          <article className="max-w-3xl space-y-6 text-[16px] leading-relaxed text-ink/85">
+          <article className="max-w-3xl space-y-5 text-[16px] leading-relaxed text-ink/85 sm:space-y-6">
             <p>
               Mein Name ist Oliver Widmer. Ich bin Ingenieur (Dipl. Ing. ETH),
               Unternehmer und Privatanleger — genau wie Sie.

@@ -16,9 +16,9 @@ export default function BlogPage() {
   return (
     <PageShell>
       <section className="border-b border-line">
-        <div className="container py-16 lg:py-20">
+        <div className="container py-10 sm:py-16 lg:py-20">
           <span className="eyebrow">Blog</span>
-          <h1 className="mt-6 font-serif text-[42px] leading-[1.08] text-navy sm:text-[54px]">
+          <h1 className="mt-6 font-serif text-[30px] leading-[1.1] text-navy sm:text-[42px] sm:leading-[1.08] lg:text-[54px]">
             Blog — <span className="italic">Wissen für Privatanleger</span>.
           </h1>
           <p className="mt-6 max-w-3xl text-base leading-relaxed text-secondary sm:text-lg">
@@ -29,7 +29,7 @@ export default function BlogPage() {
       </section>
 
       <section>
-        <div className="container py-14 lg:py-20">
+        <div className="container py-10 sm:py-14 lg:py-20">
           {posts.length === 0 ? (
             <div className="mx-auto max-w-2xl rounded-xl border border-line bg-white p-10 text-center">
               <div className="text-[11px] uppercase tracking-[0.22em] text-gold">

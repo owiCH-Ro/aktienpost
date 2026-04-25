@@ -107,7 +107,7 @@ export function RegisterForm({ defaultPlan }: { defaultPlan?: string }) {
   return (
     <form
       onSubmit={onSubmit}
-      className="flex flex-col gap-5 rounded-xl border border-line bg-white p-8"
+      className="flex flex-col gap-5 rounded-xl border border-line bg-white p-5 sm:p-8"
       noValidate
     >
       <div className="grid gap-5 sm:grid-cols-2">
@@ -142,7 +142,7 @@ export function RegisterForm({ defaultPlan }: { defaultPlan?: string }) {
         <legend className="text-[11px] uppercase tracking-[0.18em] text-secondary">
           Gewünschter Plan
         </legend>
-        <div className="grid gap-3 sm:grid-cols-3">
+        <div className="grid grid-cols-1 gap-3 sm:grid-cols-3">
           {PLANS.map((p) => (
             <PlanOption
               key={p.value}
@@ -204,7 +204,7 @@ export function RegisterForm({ defaultPlan }: { defaultPlan?: string }) {
       <button
         type="submit"
         disabled={submitting}
-        className="self-start inline-flex items-center justify-center rounded-md bg-gold px-6 py-3 text-[15px] font-medium text-white transition-colors hover:bg-gold-dark disabled:opacity-60"
+        className="inline-flex min-h-[48px] w-full items-center justify-center rounded-md bg-gold px-6 py-3 text-base font-medium text-white transition-colors hover:bg-gold-dark disabled:opacity-60 sm:w-auto sm:self-start sm:text-[15px]"
       >
         {submitting ? "Wird gesendet …" : "Jetzt anmelden"}
       </button>
@@ -241,7 +241,7 @@ function PlanOption({
   defaultChecked: boolean;
 }) {
   return (
-    <label className="group relative flex cursor-pointer flex-col gap-1 rounded-lg border border-line bg-cream-dark/20 px-4 py-3 transition-colors has-[:checked]:border-gold has-[:checked]:bg-gold/5">
+    <label className="group relative flex min-h-[56px] cursor-pointer flex-col justify-center gap-1 rounded-lg border border-line bg-cream-dark/20 px-4 py-3 transition-colors has-[:checked]:border-gold has-[:checked]:bg-gold/5 sm:min-h-0">
       <input
         type="radio"
         name="plan"
@@ -266,8 +266,9 @@ function PlanOption({
 // ---------------------------------------------------------------------------
 
 function inputClass(hasError: boolean): string {
+  // 16px on mobile prevents iOS Safari from auto-zooming on focus.
   return [
-    "w-full rounded-md border bg-cream-dark/20 px-4 py-2.5 text-[15px] text-ink",
+    "w-full rounded-md border bg-cream-dark/20 px-4 py-3 text-[16px] text-ink sm:py-2.5 sm:text-[15px]",
     "placeholder:text-muted focus:outline-none focus:ring-2 focus:ring-gold/40",
     hasError ? "border-bearish/60" : "border-line",
   ].join(" ");

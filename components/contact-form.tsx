@@ -97,7 +97,7 @@ export function ContactForm() {
   return (
     <form
       onSubmit={onSubmit}
-      className="flex flex-col gap-5 rounded-xl border border-line bg-white p-8"
+      className="flex flex-col gap-5 rounded-xl border border-line bg-white p-5 sm:p-8"
       noValidate
     >
       <Field
@@ -221,7 +221,7 @@ export function ContactForm() {
       <button
         type="submit"
         disabled={submitting}
-        className="self-start inline-flex items-center justify-center rounded-md bg-gold px-6 py-3 text-[15px] font-medium text-white transition-colors hover:bg-gold-dark disabled:opacity-60"
+        className="inline-flex min-h-[48px] w-full items-center justify-center rounded-md bg-gold px-6 py-3 text-base font-medium text-white transition-colors hover:bg-gold-dark disabled:opacity-60 sm:w-auto sm:self-start sm:text-[15px]"
       >
         {submitting ? "Wird gesendet …" : "Nachricht senden"}
       </button>
@@ -234,8 +234,10 @@ export function ContactForm() {
 // ---------------------------------------------------------------------------
 
 function inputClass(hasError: boolean): string {
+  // 16px on mobile prevents iOS Safari from auto-zooming on focus; we step
+  // back down to 15px from the sm breakpoint where that quirk doesn't apply.
   return [
-    "w-full rounded-md border bg-cream-dark/20 px-4 py-2.5 text-[15px] text-ink",
+    "w-full rounded-md border bg-cream-dark/20 px-4 py-3 text-[16px] text-ink sm:py-2.5 sm:text-[15px]",
     "placeholder:text-muted focus:outline-none focus:ring-2 focus:ring-gold/40",
     hasError ? "border-bearish/60" : "border-line",
   ].join(" ");

@@ -72,25 +72,25 @@ const CARDS: PortfolioCard[] = [
 export function PortfolioCombinations() {
   return (
     <section className="border-b border-line bg-cream-dark/40">
-      <div className="container py-20 lg:py-28">
+      <div className="container py-12 sm:py-16 lg:py-28">
         <div className="mx-auto max-w-2xl text-center">
           <span className="eyebrow">Portfolio-Bausteine</span>
-          <h2 className="mt-6 font-serif text-[34px] leading-tight text-navy sm:text-[44px]">
+          <h2 className="mt-5 font-serif text-[26px] leading-tight text-navy sm:mt-6 sm:text-[34px] lg:text-[44px]">
             So <span className="italic">kombinieren Sie</span> die Strategien.
           </h2>
-          <p className="mt-5 text-base leading-relaxed text-secondary sm:text-lg">
+          <p className="mt-4 text-[15px] leading-relaxed text-secondary sm:mt-5 sm:text-base lg:text-lg">
             Jede Strategie funktioniert allein. Zusammen bilden sie ein
             diversifiziertes Portfolio.
           </p>
         </div>
 
-        <div className="mt-14 grid gap-5 md:grid-cols-3">
+        <div className="mt-10 grid gap-4 sm:mt-14 sm:gap-5 md:grid-cols-3">
           {CARDS.map((card) => (
             <article
               key={card.name}
-              className="flex flex-col rounded-xl border border-line bg-white p-7 shadow-[0_1px_2px_rgba(15,23,42,0.04)]"
+              className="flex flex-col rounded-xl border border-line bg-white p-5 shadow-[0_1px_2px_rgba(15,23,42,0.04)] sm:p-7"
             >
-              <h3 className="font-serif text-[22px] leading-tight text-navy">
+              <h3 className="font-serif text-[20px] leading-tight text-navy sm:text-[22px]">
                 {card.name}
               </h3>
               <p className="mt-3 text-[14px] leading-relaxed text-secondary">

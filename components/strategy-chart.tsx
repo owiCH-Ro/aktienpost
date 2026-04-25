@@ -20,7 +20,7 @@ export function StrategyChart({ slug }: { slug: string }) {
       data={entry.data}
       strategyLabel={entry.name}
       benchmarkLabel={entry.benchmarkLabel}
-      height={420}
+      heightClassName="h-[250px] sm:h-[340px] lg:h-[420px]"
     />
   );
 }

@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Inter, Source_Serif_4 } from "next/font/google";
 
 import { FloatingContact } from "@/components/floating-contact";
@@ -54,6 +54,14 @@ export const metadata: Metadata = {
     icon: "/favicon.svg",
   },
   robots: { index: true, follow: true },
+};
+
+// Explicit viewport so the meta tag is always present (Next.js auto-injects
+// a sensible default, but we want full control on mobile).
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
+  viewportFit: "cover",
 };
 
 export default function RootLayout({

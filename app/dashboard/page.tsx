@@ -55,7 +55,7 @@ export default function DashboardPage({ searchParams }: Props) {
       </header>
 
       <main className="flex-1">
-        <div className="container py-14 lg:py-20">
+        <div className="container py-10 sm:py-14 lg:py-20">
           {authed ? <AdminPanel /> : <LoginPanel hasError={hasError} />}
         </div>
       </main>

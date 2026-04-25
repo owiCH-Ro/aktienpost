@@ -57,13 +57,13 @@ export function Faq() {
       {ITEMS.map((item, i) => {
         const isOpen = open === i;
         return (
-          <div key={item.q} className="py-2">
+          <div key={item.q} className="py-1">
             <button
               onClick={() => setOpen(isOpen ? null : i)}
-              className="flex w-full items-center justify-between gap-6 py-5 text-left"
+              className="flex min-h-[56px] w-full items-center justify-between gap-4 py-4 text-left sm:gap-6 sm:py-5"
               aria-expanded={isOpen}
             >
-              <span className="font-serif text-lg text-navy sm:text-xl">
+              <span className="font-serif text-[17px] leading-snug text-navy sm:text-xl">
                 {item.q}
               </span>
               <span
@@ -82,7 +82,7 @@ export function Faq() {
               }`}
             >
               <div className="overflow-hidden">
-                <p className="pb-5 pr-12 text-[15px] leading-relaxed text-secondary">
+                <p className="pb-5 pr-2 text-[15px] leading-relaxed text-secondary sm:pr-12">
                   {item.a}
                 </p>
               </div>

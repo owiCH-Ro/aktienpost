@@ -28,8 +28,11 @@ interface Props {
   data: CurvePoint[];
   strategyLabel: string;
   benchmarkLabel: string;
-  /** Render height in pixels. */
+  /** Render height in pixels (used unless `heightClassName` is set). */
   height?: number;
+  /** Optional Tailwind-style class controlling height (e.g. responsive
+   * breakpoints like `h-[250px] sm:h-[360px]`). Overrides `height`. */
+  heightClassName?: string;
   /** Event markers to overlay on the strategy line. Defaults to Covid-19
    * + Zinsanstieg — the two biggest drawdowns in the 2016-2026 window. */
   annotations?: Annotation[];
@@ -153,6 +156,7 @@ export function AnimatedLineChart({
   strategyLabel,
   benchmarkLabel,
   height = 400,
+  heightClassName,
   annotations = DEFAULT_ANNOTATIONS,
   footerLeft = "Auf 100 indexiert per 01. Januar 2016.",
   footerRight = "Backtest-Daten",
@@ -207,12 +211,16 @@ export function AnimatedLineChart({
 
   return (
     <div className={className}>
-      <div ref={containerRef} style={{ height }} className="w-full">
+      <div
+        ref={containerRef}
+        style={heightClassName ? undefined : { height }}
+        className={`w-full ${heightClassName ?? ""}`}
+      >
         {visible && (
           <ResponsiveContainer width="100%" height="100%">
             <LineChart
               data={plotData}
-              margin={{ top: 28, right: 72, left: 12, bottom: 8 }}
+              margin={{ top: 28, right: 56, left: 8, bottom: 8 }}
             >
               <CartesianGrid
                 strokeDasharray="3 3"

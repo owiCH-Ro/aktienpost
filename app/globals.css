@@ -12,6 +12,11 @@ body {
   font-family: var(--font-sans), Inter, ui-sans-serif, system-ui, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  /* Defensive guard so rogue overflowing children (e.g. wide tables that
+     forget overflow-x-auto) don't introduce a horizontal scrollbar on the
+     entire page. Individual sections that need horizontal scroll wrap their
+     own content in overflow-x-auto. */
+  overflow-x: hidden;
 }
 
 /* Small utility: uppercase eyebrow labels with gold accent line */

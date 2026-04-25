@@ -38,7 +38,7 @@ const COLUMNS: Col[] = [
 export function Footer() {
   return (
     <footer className="border-t border-line bg-cream">
-      <div className="container grid gap-12 py-14 md:grid-cols-4">
+      <div className="container grid gap-8 py-10 sm:gap-12 sm:py-14 md:grid-cols-4">
         <div>
           <Link href="/" className="flex items-center gap-2 font-serif">
             <span className="grid h-6 w-6 place-items-center rounded-sm bg-navy text-cream">
@@ -73,7 +73,7 @@ export function Footer() {
       </div>
 
       <div className="border-t border-line">
-        <div className="container flex flex-col gap-3 py-8 text-xs leading-relaxed text-muted md:flex-row md:items-start md:justify-between">
+        <div className="container flex flex-col gap-3 py-6 text-xs leading-relaxed text-muted sm:py-8 md:flex-row md:items-start md:justify-between">
           <p className="max-w-3xl">{DISCLAIMER_TEXT}</p>
           <p className="md:text-right">
             © {new Date().getFullYear()} OWITA AG — aktienpost.ch

@@ -57,7 +57,7 @@ export default function BlogPostPage({ params }: Props) {
       </section>
 
       <section>
-        <div className="container py-14 lg:py-20">
+        <div className="container py-10 sm:py-14 lg:py-20">
           <article
             className="blog-article mx-auto max-w-[720px]"
             dangerouslySetInnerHTML={{ __html: post.html }}
