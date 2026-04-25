@@ -125,16 +125,16 @@ function TabPanel({ strategy: s }: { strategy: Strategy }) {
         </div>
       </div>
 
-      {/* Right column: chart. min-w-0 is essential — without it, grid
-          children default to min-content width and the chart's endpoint
-          labels (+350% etc.) push the column wider than the viewport. */}
-      <div className="min-w-0">
+      {/* Right column: chart. min-w-0 + max-w-full + overflow-hidden are
+          all needed so endpoint/annotation SVG text can never push the
+          grid column past the viewport on mobile. */}
+      <div className="w-full min-w-0 max-w-full overflow-hidden">
         {entry && (
           /* key={s.slug} forces a remount on tab switch so the draw
              animation fires on each selection — a nice tactile touch. */
           <div
             key={s.slug}
-            className="overflow-hidden rounded-xl border border-line bg-white p-3 sm:p-5 lg:p-6"
+            className="w-full max-w-full overflow-hidden rounded-xl border border-line bg-white p-3 sm:p-5 lg:p-6"
           >
             <AnimatedLineChart
               data={entry.data}
@@ -147,7 +147,7 @@ function TabPanel({ strategy: s }: { strategy: Strategy }) {
       </div>
 
       {/* Compact perf table — spans full width under both columns */}
-      <div className="lg:col-span-2">
+      <div className="w-full min-w-0 max-w-full lg:col-span-2">
         <h4 className="mb-4 text-[11px] uppercase tracking-[0.22em] text-secondary">
           Performance nach Zeitraum
         </h4>

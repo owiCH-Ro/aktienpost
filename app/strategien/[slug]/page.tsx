@@ -79,7 +79,7 @@ export default function StrategyDetailPage({ params }: Props) {
               </span>
             </h2>
           </div>
-          <div className="rounded-xl border border-line bg-white p-3 sm:p-5 lg:p-6">
+          <div className="w-full max-w-full overflow-hidden rounded-xl border border-line bg-white p-3 sm:p-5 lg:p-6">
             <StrategyChart slug={params.slug} />
           </div>
         </div>

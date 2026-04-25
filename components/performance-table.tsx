@@ -22,8 +22,8 @@ export function PerformanceTable({
   note?: string;
 }) {
   return (
-    <div>
-      <div className="relative overflow-x-auto rounded-xl border border-line bg-white">
+    <div className="w-full max-w-full">
+      <div className="relative w-full max-w-full overflow-x-auto rounded-xl border border-line bg-white">
         <table className="w-full min-w-[720px] text-[13px] sm:text-sm">
           <thead>
             <tr className="bg-cream-dark/40 text-left text-[10px] uppercase tracking-[0.15em] text-secondary sm:text-[11px]">

@@ -199,13 +199,18 @@ export function AnimatedLineChart({
     return () => mq.removeEventListener("change", update);
   }, []);
 
+  // On mobile we drop the SVG endpoint labels entirely — the same totals
+  // are already in the HTML legend below the chart, and rendering them as
+  // SVG text was the actual source of the viewport overflow on the
+  // strategy-tabs section. Right margin shrinks accordingly.
   const chartMargin = isMobile
-    ? { top: 22, right: 38, left: 0, bottom: 4 }
+    ? { top: 18, right: 10, left: 0, bottom: 4 }
     : { top: 28, right: 56, left: 8, bottom: 8 };
   const axisFontSize = isMobile ? 9 : 11;
   const yAxisWidth = isMobile ? 28 : 44;
   const annotationFontSize = isMobile ? 9 : 11;
-  const endpointFontSize = isMobile ? 10 : 12;
+  const endpointFontSize = 12;
+  const showEndpointLabels = !isMobile;
 
   // Pre-compute plot data with numeric x-axis.
   const plotData = useMemo(
@@ -234,11 +239,11 @@ export function AnimatedLineChart({
   );
 
   return (
-    <div className={className}>
+    <div className={`w-full max-w-full overflow-hidden ${className}`}>
       <div
         ref={containerRef}
         style={heightClassName ? undefined : { height }}
-        className={`w-full ${heightClassName ?? ""}`}
+        className={`w-full max-w-full ${heightClassName ?? ""}`}
       >
         {visible && (
           <ResponsiveContainer width="100%" height="100%">
@@ -318,41 +323,47 @@ export function AnimatedLineChart({
                 </ReferenceDot>
               ))}
 
-              {/* Endpoint labels at the right edge, showing total return. */}
-              <ReferenceDot
-                x={last.x}
-                y={last.strategy}
-                r={0}
-                ifOverflow="extendDomain"
-              >
-                <Label
-                  content={
-                    <EndpointLabel
-                      text={strategyReturn}
-                      color="#1a2e4a"
-                      weight={700}
-                      fontSize={endpointFontSize}
+              {/* Endpoint labels at the right edge, showing total return.
+                  Hidden on mobile — the same totals are in the legend
+                  below, and the SVG text overflowed the viewport. */}
+              {showEndpointLabels && (
+                <>
+                  <ReferenceDot
+                    x={last.x}
+                    y={last.strategy}
+                    r={0}
+                    ifOverflow="extendDomain"
+                  >
+                    <Label
+                      content={
+                        <EndpointLabel
+                          text={strategyReturn}
+                          color="#1a2e4a"
+                          weight={700}
+                          fontSize={endpointFontSize}
+                        />
+                      }
                     />
-                  }
-                />
-              </ReferenceDot>
-              <ReferenceDot
-                x={last.x}
-                y={last.benchmark}
-                r={0}
-                ifOverflow="extendDomain"
-              >
-                <Label
-                  content={
-                    <EndpointLabel
-                      text={benchmarkReturn}
-                      color="#6b7280"
-                      weight={500}
-                      fontSize={endpointFontSize}
+                  </ReferenceDot>
+                  <ReferenceDot
+                    x={last.x}
+                    y={last.benchmark}
+                    r={0}
+                    ifOverflow="extendDomain"
+                  >
+                    <Label
+                      content={
+                        <EndpointLabel
+                          text={benchmarkReturn}
+                          color="#6b7280"
+                          weight={500}
+                          fontSize={endpointFontSize}
+                        />
+                      }
                     />
-                  }
-                />
-              </ReferenceDot>
+                  </ReferenceDot>
+                </>
+              )}
             </LineChart>
           </ResponsiveContainer>
         )}
@@ -379,7 +390,9 @@ export function AnimatedLineChart({
 
       <div className="mt-4 flex flex-wrap items-center justify-between gap-2 border-t border-line pt-3 text-[11px] text-muted">
         <span>{footerLeft}</span>
-        <span>{footerRight}</span>
+        {/* Hidden on mobile — saves horizontal space and the left note
+            already conveys that this is backtest data. */}
+        <span className="hidden sm:inline">{footerRight}</span>
       </div>
     </div>
   );
