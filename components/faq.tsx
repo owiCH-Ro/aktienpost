@@ -29,8 +29,8 @@ const ITEMS: Item[] = [
     a: "Nein. aktienpost.ch ist ein reiner Informationsdienst. Wir geben keine individuellen Empfehlungen und kennen Ihre persönliche finanzielle Situation nicht. Anlageentscheide treffen Sie eigenverantwortlich.",
   },
   {
-    q: "Was ist die Geld-zurück-Garantie?",
-    a: "Wenn Sie innerhalb der ersten 30 Tage nach Abschluss Ihres Abonnements nicht zufrieden sind, erstatten wir Ihnen den vollen Betrag — ohne Fragen, ohne Kleingedrucktes. Schreiben Sie einfach eine E-Mail an info@aktienpost.ch.",
+    q: "Was bedeutet «30 Tage kostenlos testen»?",
+    a: "Die ersten 30 Tage nach Abschluss Ihres Abonnements sind komplett kostenlos. Sie erhalten alle Signale, alle Strategien und alle Reports in vollem Umfang. Erst nach Ablauf der 30 Tage erhalten Sie die erste Rechnung. Während der Testphase können Sie jederzeit ohne Angabe von Gründen kündigen — schreiben Sie einfach eine E-Mail an info@aktienpost.ch.",
   },
   {
     q: "Wie aktuell sind die Signale?",

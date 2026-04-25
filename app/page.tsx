@@ -62,7 +62,7 @@ function Hero() {
               href="#preise"
               className="inline-flex min-h-[48px] w-full items-center justify-center rounded-md bg-gold px-6 py-3.5 text-base font-medium text-white shadow-sm transition-colors hover:bg-gold-dark sm:w-auto sm:text-[15px]"
             >
-              Jetzt starten — 30 Tage Geld-zurück
+              Jetzt starten — 30 Tage kostenlos
             </a>
             <a
               href="#performance"
@@ -90,7 +90,7 @@ function MetricsBar() {
     { value: "+860%", label: "in 10 Jahren (US Tech Growth)" },
     { value: "5 Min.", label: "Aufwand pro Signal" },
     { value: "CHF 490", label: "pro Jahr — ab" },
-    { value: "30 Tage", label: "Geld-zurück-Garantie" },
+    { value: "30 Tage", label: "kostenlos testen" },
   ];
   return (
     <section className="border-b border-line bg-cream-dark/60">
@@ -421,7 +421,7 @@ function Pricing() {
             <span className="italic">Ohne versteckte Kosten.</span>
           </h2>
           <p className="mt-4 text-[15px] leading-relaxed text-secondary sm:mt-5 sm:text-base lg:text-lg">
-            Jahresabo: 2 Monate gratis. 30 Tage Geld-zurück-Garantie auf
+            Jahresabo: 2 Monate gratis. 30 Tage kostenlos testen auf
             jedem Plan.
           </p>
         </div>
@@ -486,7 +486,7 @@ function Pricing() {
                   {p.cta}
                 </Link>
                 <span className="text-center text-xs text-muted">
-                  30 Tage Geld-zurück-Garantie
+                  30 Tage kostenlos testen
                 </span>
               </div>
             </div>
@@ -532,7 +532,7 @@ function FinalCta() {
           <span className="italic text-gold">Risiko</span>.
         </h2>
         <p className="mx-auto mt-5 max-w-2xl text-[15px] leading-relaxed text-cream/70 sm:mt-6 sm:text-base lg:text-lg">
-          30 Tage Geld-zurück-Garantie. Kein Risiko. Kündigung jederzeit
+          30 Tage kostenlos testen. Kein Risiko. Kündigung jederzeit
           möglich.
         </p>
         <div className="mt-8 sm:mt-10">

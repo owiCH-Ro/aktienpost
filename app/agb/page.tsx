@@ -55,12 +55,14 @@ export default function AgbPage() {
             </p>
           </Clause>
 
-          <Clause n="4" heading="Geld-zurück-Garantie">
+          <Clause n="4" heading="Kostenlose Testphase">
             <p>
-              Innerhalb der ersten 30 Tage nach Abschluss erstatten wir den
-              vollen Betrag — ohne Fragen, ohne Kleingedrucktes. Die
-              Rückerstattung erfolgt innerhalb von 14 Tagen nach Erhalt der
-              Anfrage.
+              Die ersten 30 Tage nach Abschluss des Abonnements sind
+              kostenlos. Die Rechnungsstellung beginnt erst nach Ablauf
+              dieser Testphase. Während der 30 Tage kann der Abonnent
+              jederzeit ohne Angabe von Gründen kündigen, indem er eine
+              E-Mail an info@aktienpost.ch sendet — in diesem Fall fallen
+              keinerlei Kosten an.
             </p>
           </Clause>
 

@@ -6,7 +6,7 @@ import { RegisterForm } from "@/components/register-form";
 export const metadata: Metadata = {
   title: "Anmelden — aktienpost.ch",
   description:
-    "Melden Sie sich für aktienpost.ch an. Alle 4 Strategien, 30 Tage Geld-zurück-Garantie, ab CHF 49 im Monat.",
+    "Melden Sie sich für aktienpost.ch an. Alle 4 Strategien, 30 Tage kostenlos testen, ab CHF 49 im Monat.",
 };
 
 interface Props {
@@ -27,8 +27,8 @@ export default function AnmeldenPage({ searchParams }: Props) {
           </h1>
           <p className="mt-6 max-w-3xl text-base leading-relaxed text-secondary sm:text-lg">
             Füllen Sie das Formular aus — wir melden uns innerhalb von 24
-            Stunden, um Ihr Abonnement zu aktivieren. 30 Tage Geld-zurück-
-            Garantie, Kündigung jederzeit möglich.
+            Stunden, um Ihr Abonnement zu aktivieren. 30 Tage kostenlos
+            testen, Kündigung jederzeit möglich.
           </p>
         </div>
       </section>
@@ -49,7 +49,7 @@ export default function AnmeldenPage({ searchParams }: Props) {
               <ol className="mt-5 space-y-4 text-[14.5px] leading-relaxed text-ink/85">
                 {[
                   "Sie erhalten innerhalb von 24 Stunden eine persönliche E-Mail von Oliver Widmer mit einer Übersicht aller aktuell offenen Positionen.",
-                  "Sie erhalten eine Rechnung per E-Mail (OWITA AG). Die Bezahlung erfolgt bequem auf Rechnung — keine Kreditkarte nötig.",
+                  "Die ersten 30 Tage testen Sie aktienpost.ch kostenlos. Erst danach erhalten Sie die erste Rechnung per E-Mail (OWITA AG) — bequem auf Rechnung, keine Kreditkarte nötig. Während der Testphase können Sie jederzeit ohne Angabe von Gründen kündigen.",
                   "Sobald Ihr Zugang aktiviert ist, erhalten Sie jeden Morgen vor Börsenöffnung Ihren persönlichen Portfoliobericht per E-Mail.",
                   "Bei neuen Kauf- oder Verkaufssignalen werden Sie sofort informiert.",
                 ].map((step, i) => (
@@ -62,7 +62,7 @@ export default function AnmeldenPage({ searchParams }: Props) {
                 ))}
               </ol>
               <p className="mt-6 border-t border-line pt-4 text-center text-[13px] font-medium text-navy">
-                30 Tage Geld-zurück-Garantie — ohne Wenn und Aber.
+                30 Tage kostenlos testen — ohne Wenn und Aber.
               </p>
             </div>
 

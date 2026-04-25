@@ -167,7 +167,7 @@ export default function StrategyDetailPage({ params }: Props) {
             Überzeugt? <span className="italic text-gold">Starten Sie jetzt.</span>
           </h2>
           <p className="mx-auto mt-4 max-w-2xl text-[15px] leading-relaxed text-cream/70 sm:mt-5 sm:text-base">
-            30 Tage Geld-zurück-Garantie. Kein Risiko. Kündigung jederzeit
+            30 Tage kostenlos testen. Kein Risiko. Kündigung jederzeit
             möglich.
           </p>
           <div className="mt-7 sm:mt-8">

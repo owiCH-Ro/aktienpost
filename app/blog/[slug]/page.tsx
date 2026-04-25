@@ -69,7 +69,7 @@ export default function BlogPostPage({ params }: Props) {
               <span className="italic">30 Tage kostenlos</span>.
             </h2>
             <p className="mt-4 text-[15px] leading-relaxed text-ink/80">
-              30 Tage Geld-zurück-Garantie. Kündigung jederzeit möglich.
+              30 Tage kostenlos testen. Kündigung jederzeit möglich.
             </p>
             <Link
               href="/anmelden"

@@ -74,7 +74,7 @@ export function Nav() {
           href="/#preise"
           className="hidden lg:inline-flex items-center gap-2 rounded-md border border-gold bg-gold px-4 py-2 text-sm font-medium text-white shadow-sm transition-colors hover:bg-gold-dark hover:border-gold-dark"
         >
-          30-Tage Geld-zurück
+          30 Tage kostenlos
         </Link>
 
         {/* Mobile hamburger — visible below lg. 44x44 tap target. */}
@@ -134,7 +134,7 @@ export function Nav() {
               onClick={() => setOpen(false)}
               className="flex w-full items-center justify-center rounded-md bg-gold px-5 py-3 text-[15px] font-medium text-white shadow-sm hover:bg-gold-dark"
             >
-              30-Tage Geld-zurück
+              30 Tage kostenlos
             </Link>
           </div>
         </nav>

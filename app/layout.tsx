@@ -23,7 +23,7 @@ export const metadata: Metadata = {
   metadataBase: new URL("https://aktienpost.ch"),
   title: "aktienpost.ch — Börsensignale für Schweizer Privatanleger",
   description:
-    "Börsensignale aus der Schweiz. Wissenschaftlich getestete Anlagestrategien für Privatanleger: 4 Strategien, 5 Min. Aufwand pro Signal, 30 Tage Geld-zurück-Garantie. Ab CHF 49 im Monat.",
+    "Börsensignale aus der Schweiz. Wissenschaftlich getestete Anlagestrategien für Privatanleger: 4 Strategien, 5 Min. Aufwand pro Signal, 30 Tage kostenlos testen. Ab CHF 49 im Monat.",
   keywords: [
     "Börsensignale",
     "Schweiz",
@@ -38,7 +38,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "aktienpost.ch — Börsensignale für Schweizer Privatanleger",
     description:
-      "4 wissenschaftlich getestete Börsenstrategien. Nur 5 Minuten Aufwand pro Signal. 30 Tage Geld-zurück-Garantie. Ab CHF 49 im Monat.",
+      "4 wissenschaftlich getestete Börsenstrategien. Nur 5 Minuten Aufwand pro Signal. 30 Tage kostenlos testen. Ab CHF 49 im Monat.",
     url: "https://aktienpost.ch",
     siteName: "aktienpost.ch",
     locale: "de_CH",
@@ -48,7 +48,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "aktienpost.ch — Börsensignale für Schweizer Privatanleger",
     description:
-      "4 wissenschaftlich getestete Strategien. Ab CHF 49 im Monat. 30 Tage Geld-zurück-Garantie.",
+      "4 wissenschaftlich getestete Strategien. Ab CHF 49 im Monat. 30 Tage kostenlos testen.",
   },
   icons: {
     icon: "/favicon.svg",
