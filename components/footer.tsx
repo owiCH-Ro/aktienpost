@@ -20,7 +20,7 @@ const COLUMNS: Col[] = [
   {
     heading: "Unternehmen",
     items: [
-      { href: "/ueber-mich", label: "Über mich" },
+      { href: "/ueber-mich", label: "Über uns" },
       { href: "/kontakt", label: "Kontakt" },
       { href: "/glossar", label: "Glossar" },
     ],

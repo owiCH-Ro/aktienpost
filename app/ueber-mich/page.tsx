@@ -4,7 +4,7 @@ import Image from "next/image";
 import { PageShell } from "@/components/page-shell";
 
 export const metadata: Metadata = {
-  title: "Über mich — aktienpost.ch",
+  title: "Über uns — aktienpost.ch",
   description:
     "Warum ich aktienpost.ch gegründet habe. Oliver Widmer, Dipl. Ing. ETH, Gründer von aktienpost.ch.",
 };
@@ -14,7 +14,7 @@ export default function UeberMichPage() {
     <PageShell>
       <section className="border-b border-line">
         <div className="container py-10 sm:py-16 lg:py-24">
-          <span className="eyebrow">Über mich</span>
+          <span className="eyebrow">Über uns</span>
           <h1 className="mt-5 font-serif text-[30px] leading-[1.1] text-navy sm:mt-6 sm:text-[42px] sm:leading-[1.08] lg:text-[54px]">
             Warum ich aktienpost.ch
             <br />

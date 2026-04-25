@@ -1,7 +1,7 @@
 import { Footer } from "@/components/footer";
 import { Nav } from "@/components/nav";
 
-/** Shared shell for simple content pages (Über mich, Kontakt, legal, ...).
+/** Shared shell for simple content pages (Über uns, Kontakt, legal, ...).
  * Renders Nav + Footer and a content container with the usual padding.
  * Children pick their own section structure within <main>. */
 export function PageShell({ children }: { children: React.ReactNode }) {

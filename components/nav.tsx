@@ -9,7 +9,7 @@ const links: Array<{ href: string; label: string }> = [
   { href: "/#performance", label: "Performance" },
   { href: "/#preise", label: "Preise" },
   { href: "/blog", label: "Blog" },
-  { href: "/ueber-mich", label: "Über mich" },
+  { href: "/ueber-mich", label: "Über uns" },
   { href: "/kontakt", label: "Kontakt" },
   { href: "/beispiel-signal", label: "Beispiel-Signal" },
 ];
