@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Inter, Source_Serif_4 } from "next/font/google";
 
+import { FloatingContact } from "@/components/floating-contact";
 import { MetaPixel, MetaPixelNoscript } from "@/components/meta-pixel";
 import "./globals.css";
 
@@ -68,6 +69,7 @@ export default function RootLayout({
       <body>
         <MetaPixelNoscript />
         {children}
+        <FloatingContact />
       </body>
     </html>
   );
