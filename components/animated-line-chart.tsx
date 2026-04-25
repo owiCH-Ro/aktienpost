@@ -87,9 +87,11 @@ const DEFAULT_ANNOTATIONS: Annotation[] = [
 function AnnotationLabel({
   viewBox,
   text,
+  fontSize = 11,
 }: {
   viewBox?: { x?: number; y?: number };
   text: string;
+  fontSize?: number;
 }) {
   if (!viewBox || viewBox.x === undefined || viewBox.y === undefined) return null;
   const { x, y } = viewBox;
@@ -99,7 +101,7 @@ function AnnotationLabel({
         x={x}
         y={y - 24}
         textAnchor="middle"
-        fontSize={11}
+        fontSize={fontSize}
         fill="#6b7280"
         fontFamily="var(--font-sans), Inter, sans-serif"
       >
@@ -123,20 +125,22 @@ function EndpointLabel({
   color,
   weight = 600,
   dy = 0,
+  fontSize = 12,
 }: {
   viewBox?: { x?: number; y?: number };
   text: string;
   color: string;
   weight?: number;
   dy?: number;
+  fontSize?: number;
 }) {
   if (!viewBox || viewBox.x === undefined || viewBox.y === undefined) return null;
   const { x, y } = viewBox;
   return (
     <text
-      x={x + 8}
+      x={x + 6}
       y={y + 4 + dy}
-      fontSize={12}
+      fontSize={fontSize}
       fontWeight={weight}
       fill={color}
       fontFamily="var(--font-sans), Inter, sans-serif"
@@ -183,6 +187,26 @@ export function AnimatedLineChart({
     return () => observer.disconnect();
   }, [visible]);
 
+  // Mobile-aware density. Recharts margins / font sizes are JS props (not
+  // CSS) so we need to read viewport width here. Sync default avoids a
+  // first-paint mismatch on client; SSR falls back to desktop.
+  const [isMobile, setIsMobile] = useState(false);
+  useEffect(() => {
+    const mq = window.matchMedia("(max-width: 639px)");
+    const update = () => setIsMobile(mq.matches);
+    update();
+    mq.addEventListener("change", update);
+    return () => mq.removeEventListener("change", update);
+  }, []);
+
+  const chartMargin = isMobile
+    ? { top: 22, right: 38, left: 0, bottom: 4 }
+    : { top: 28, right: 56, left: 8, bottom: 8 };
+  const axisFontSize = isMobile ? 9 : 11;
+  const yAxisWidth = isMobile ? 28 : 44;
+  const annotationFontSize = isMobile ? 9 : 11;
+  const endpointFontSize = isMobile ? 10 : 12;
+
   // Pre-compute plot data with numeric x-axis.
   const plotData = useMemo(
     () => data.map((p) => ({ ...p, x: yearFraction(p.date) })),
@@ -218,10 +242,7 @@ export function AnimatedLineChart({
       >
         {visible && (
           <ResponsiveContainer width="100%" height="100%">
-            <LineChart
-              data={plotData}
-              margin={{ top: 28, right: 56, left: 8, bottom: 8 }}
-            >
+            <LineChart data={plotData} margin={chartMargin}>
               <CartesianGrid
                 strokeDasharray="3 3"
                 stroke="#e5e1d7"
@@ -231,18 +252,22 @@ export function AnimatedLineChart({
                 dataKey="x"
                 type="number"
                 domain={[2016, 2026.5]}
-                ticks={[2016, 2018, 2020, 2022, 2024, 2026]}
+                ticks={
+                  isMobile
+                    ? [2016, 2020, 2024]
+                    : [2016, 2018, 2020, 2022, 2024, 2026]
+                }
                 tickFormatter={(v) => String(Math.round(v as number))}
-                tick={{ fill: "#9ca3af", fontSize: 11 }}
+                tick={{ fill: "#9ca3af", fontSize: axisFontSize }}
                 axisLine={{ stroke: "#e5e1d7" }}
                 tickLine={false}
               />
               <YAxis
                 domain={["auto", "auto"]}
-                tick={{ fill: "#9ca3af", fontSize: 11 }}
+                tick={{ fill: "#9ca3af", fontSize: axisFontSize }}
                 axisLine={false}
                 tickLine={false}
-                width={44}
+                width={yAxisWidth}
                 tickFormatter={(v) => String(Math.round(v as number))}
               />
 
@@ -283,7 +308,12 @@ export function AnimatedLineChart({
                   ifOverflow="extendDomain"
                 >
                   <Label
-                    content={<AnnotationLabel text={a.label} />}
+                    content={
+                      <AnnotationLabel
+                        text={a.label}
+                        fontSize={annotationFontSize}
+                      />
+                    }
                   />
                 </ReferenceDot>
               ))}
@@ -301,6 +331,7 @@ export function AnimatedLineChart({
                       text={strategyReturn}
                       color="#1a2e4a"
                       weight={700}
+                      fontSize={endpointFontSize}
                     />
                   }
                 />
@@ -317,6 +348,7 @@ export function AnimatedLineChart({
                       text={benchmarkReturn}
                       color="#6b7280"
                       weight={500}
+                      fontSize={endpointFontSize}
                     />
                   }
                 />

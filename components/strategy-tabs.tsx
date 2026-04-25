@@ -125,20 +125,22 @@ function TabPanel({ strategy: s }: { strategy: Strategy }) {
         </div>
       </div>
 
-      {/* Right column: chart */}
-      <div>
+      {/* Right column: chart. min-w-0 is essential — without it, grid
+          children default to min-content width and the chart's endpoint
+          labels (+350% etc.) push the column wider than the viewport. */}
+      <div className="min-w-0">
         {entry && (
           /* key={s.slug} forces a remount on tab switch so the draw
              animation fires on each selection — a nice tactile touch. */
           <div
             key={s.slug}
-            className="rounded-xl border border-line bg-white p-4 sm:p-5 lg:p-6"
+            className="overflow-hidden rounded-xl border border-line bg-white p-3 sm:p-5 lg:p-6"
           >
             <AnimatedLineChart
               data={entry.data}
               strategyLabel={entry.name}
               benchmarkLabel={entry.benchmarkLabel}
-              heightClassName="h-[250px] sm:h-[320px] lg:h-[360px]"
+              heightClassName="h-[210px] sm:h-[320px] lg:h-[360px]"
             />
           </div>
         )}

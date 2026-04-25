@@ -29,8 +29,10 @@ export function FloatingContact() {
       aria-label="Haben Sie Fragen? Schreiben Sie uns."
       className={[
         // Positioning + stacking. z-30 sits above page content but below any
-        // modal/dialog (which we'd put at z-50+).
-        "fixed bottom-5 right-5 z-30 sm:bottom-6 sm:right-6",
+        // modal/dialog (which we'd put at z-50+). 16px gutter on mobile so
+        // the button stays comfortably inside the viewport even when the
+        // expanded label hasn't opened.
+        "fixed bottom-4 right-4 z-30 sm:bottom-6 sm:right-6",
         // Visual restraint: navy fill, thin gold ring, soft shadow.
         "group inline-flex items-center gap-2 rounded-full bg-navy text-white",
         "px-3.5 py-2 text-[13px] sm:px-4 sm:py-2.5 sm:text-[14px]",
