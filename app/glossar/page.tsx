@@ -32,7 +32,7 @@ const ENTRIES: Entry[] = [
   },
   {
     term: "CAGR (Rendite p.a.)",
-    body: "Compound Annual Growth Rate — die durchschnittliche jährliche Rendite, bereinigt um den Zinseszinseffekt. Beispiel: +350% über 10 Jahre entspricht einer CAGR von 15.7% pro Jahr.",
+    body: "Compound Annual Growth Rate — die durchschnittliche jährliche Rendite, bereinigt um den Zinseszinseffekt. Beispiel: +327% über 10 Jahre entspricht einer CAGR von 15.2% pro Jahr.",
   },
   {
     term: "Drawdown / Max. Rückgang",

@@ -46,7 +46,7 @@ function Hero() {
           <span className="eyebrow">Börsensignale aus der Schweiz</span>
 
           <h1 className="mt-5 font-serif text-[30px] leading-[1.1] text-navy sm:mt-6 sm:text-[44px] sm:leading-[1.08] lg:text-[62px]">
-            +350% mit Schweizer Aktien.
+            +327% mit Schweizer Aktien.
             <br />
             <span className="italic">Vier Strategien, die den Markt schlagen.</span>
           </h1>
@@ -269,7 +269,7 @@ function BankComparison() {
     },
     {
       label: "Rendite p.a. (CH, 10 J.)",
-      us: "15.7%",
+      us: "15.2%",
       bank: "5 – 8%",
     },
     {

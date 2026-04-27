@@ -3,10 +3,10 @@ title: "Was ein Backtest aussagt — und was nicht"
 date: "2026-04-25"
 category: "Transparenz"
 readingTime: "5 Min."
-excerpt: "Auf unserer Webseite sehen Sie Zahlen wie +350% in 10 Jahren. Beeindruckende Werte. Aber wie verlässlich sind sie? Wir legen offen, was Backtests können — und wo sie an ihre Grenzen stossen."
+excerpt: "Auf unserer Webseite sehen Sie Zahlen wie +327% in 10 Jahren. Beeindruckende Werte. Aber wie verlässlich sind sie? Wir legen offen, was Backtests können — und wo sie an ihre Grenzen stossen."
 ---
 
-Auf unserer Webseite sehen Sie Zahlen wie "+350% in 10 Jahren" oder "Sharpe Ratio 2.05". Beeindruckende Werte. Aber was steckt dahinter — und wie verlässlich sind sie?
+Auf unserer Webseite sehen Sie Zahlen wie "+327% in 10 Jahren" oder "Sharpe Ratio 2.05". Beeindruckende Werte. Aber was steckt dahinter — und wie verlässlich sind sie?
 
 Wir könnten diese Frage umgehen. Die meisten Anbieter tun das. Wir nicht. Denn wir glauben, dass Transparenz Vertrauen schafft — und dass Sie als Anleger ein Recht darauf haben zu verstehen, was Backtests können und was nicht.
 
