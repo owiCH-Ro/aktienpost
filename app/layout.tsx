@@ -23,9 +23,11 @@ export const metadata: Metadata = {
   metadataBase: new URL("https://aktienpost.ch"),
   title: "aktienpost.ch — Börsensignale für Schweizer Privatanleger",
   description:
-    "Börsensignale aus der Schweiz. Wissenschaftlich getestete Anlagestrategien für Privatanleger: 4 Strategien, 5 Min. Aufwand pro Signal, 30 Tage kostenlos testen. Ab CHF 49 im Monat.",
+    "aktienpost.ch — Algorithmische Börsensignale für Schweizer Privatanleger. KI-gesteuerte Handelsstrategien, über 10 Jahre getestet. 4 Strategien, ab CHF 49/Monat.",
   keywords: [
     "Börsensignale",
+    "KI-gesteuerte Trading App",
+    "algorithmisches Trading",
     "Schweiz",
     "SPI",
     "Anlagestrategie",

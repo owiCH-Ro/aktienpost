@@ -25,9 +25,11 @@ export function StrategyTabs() {
             <span className="italic">Jede übertrifft ihren Index.</span>
           </h2>
           <p className="mt-4 text-[15px] leading-relaxed text-secondary sm:mt-5 sm:text-base lg:text-lg">
-            Jede Strategie folgt einem eigenen, klaren Regelwerk — von
-            defensiv bis wachstumsorientiert. Wählen Sie eine Strategie
-            oder kombinieren Sie mehrere.
+            Unsere KI-gesteuerten Algorithmen analysieren täglich Hunderte
+            von Aktien und identifizieren die besten Einstiegs- und
+            Ausstiegspunkte. Jede Strategie folgt einem eigenen, klaren
+            Regelwerk — von defensiv bis wachstumsorientiert. Wählen Sie
+            eine Strategie oder kombinieren Sie mehrere.
           </p>
         </div>
 

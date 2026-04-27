@@ -32,8 +32,41 @@ export default function BlogPostPage({ params }: Props) {
   const post = getPostBySlug(params.slug);
   if (!post) notFound();
 
+  // schema.org Article JSON-LD for richer search results. Mirrors the
+  // frontmatter so editing a post automatically updates the structured
+  // data alongside the visible page.
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    headline: post.title,
+    description: post.excerpt,
+    datePublished: post.date,
+    dateModified: post.date,
+    author: {
+      "@type": "Person",
+      name: "Oliver Widmer",
+      url: "https://aktienpost.ch/ueber-mich",
+    },
+    publisher: {
+      "@type": "Organization",
+      name: "aktienpost.ch",
+      url: "https://aktienpost.ch",
+    },
+    mainEntityOfPage: {
+      "@type": "WebPage",
+      "@id": `https://aktienpost.ch/blog/${post.slug}`,
+    },
+    articleSection: post.category,
+  };
+
   return (
     <PageShell>
+      <script
+        type="application/ld+json"
+        // JSON.stringify is safe here — frontmatter values are static
+        // strings authored by us, not user input.
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
       <section className="border-b border-line">
         <div className="container py-12 lg:py-16">
           <div className="mx-auto max-w-[720px]">

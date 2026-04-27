@@ -7,7 +7,7 @@ import { formatDateDe, getAllPosts } from "@/lib/blog";
 export const metadata: Metadata = {
   title: "Blog — aktienpost.ch",
   description:
-    "Regelmässige Artikel zu Anlagestrategien, Märkten und dem Schweizer Aktienmarkt. aktienpost.ch — Wissen für Privatanleger.",
+    "Blog über algorithmisches Investieren, KI-gesteuerte Trading-Strategien und Schweizer Aktienmarkt. Wissen für Privatanleger.",
 };
 
 export default function BlogPage() {
