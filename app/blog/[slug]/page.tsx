@@ -45,7 +45,6 @@ export default function BlogPostPage({ params }: Props) {
     author: {
       "@type": "Person",
       name: "Oliver Widmer",
-      url: "https://aktienpost.ch/ueber-mich",
     },
     publisher: {
       "@type": "Organization",

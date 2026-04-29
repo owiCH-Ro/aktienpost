@@ -22,7 +22,7 @@ Der grösste Feind des Privatanlegers ist nicht der Markt — es sind die eigene
 
 Ein algorithmisches System hat keine Emotionen. Es verkauft nicht in Panik, wenn die Kurse fallen. Es kauft nicht aus Gier, wenn ein Titel gerade heiss diskutiert wird. Es folgt seinen Regeln — Tag für Tag, ohne Ausnahme.
 
-Genau dieses Problem hat auch den Gründer von aktienpost.ch dazu gebracht, ein eigenes System zu entwickeln. Nach dem Verkauf seines Unternehmens legte er sein Geld selbst an — und verkaufte im Bärenmarkt 2022 nahe dem Tiefpunkt. Klassisch. Der Ingenieur-Verstand wusste, dass es falsch war. Aber die Emotionen waren stärker. Die ganze Geschichte können Sie unter "Über uns" nachlesen.
+Genau dieses Problem hat auch den Gründer von aktienpost.ch dazu gebracht, ein eigenes System zu entwickeln. Nach dem Verkauf seines Unternehmens legte er sein Geld selbst an — und verkaufte im Bärenmarkt 2022 nahe dem Tiefpunkt. Klassisch. Der Ingenieur-Verstand wusste, dass es falsch war. Aber die Emotionen waren stärker. Aus dieser Erfahrung entstand der Wunsch nach einem regelbasierten System.
 
 ## Worauf Sie bei einer Trading App achten sollten
 
