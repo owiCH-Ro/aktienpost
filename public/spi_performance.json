@@ -1,0 +1,633 @@
+{
+  "stats": {
+    "cagr": 15.4,
+    "sharpe": 1.302,
+    "max_dd": -16.58,
+    "total_return": 338.2,
+    "live_start": "2025-04-01",
+    "start_date": "2016-01-04",
+    "end_date": "2026-04-30"
+  },
+  "monthly_returns": [
+    {
+      "month": "2016-01",
+      "strategy": null,
+      "benchmark": null
+    },
+    {
+      "month": "2016-02",
+      "strategy": -0.16,
+      "benchmark": -3.96
+    },
+    {
+      "month": "2016-03",
+      "strategy": 4.86,
+      "benchmark": 0.8
+    },
+    {
+      "month": "2016-04",
+      "strategy": 4.27,
+      "benchmark": 3.23
+    },
+    {
+      "month": "2016-05",
+      "strategy": 4.97,
+      "benchmark": 3.26
+    },
+    {
+      "month": "2016-06",
+      "strategy": 0.03,
+      "benchmark": -2.72
+    },
+    {
+      "month": "2016-07",
+      "strategy": 6.85,
+      "benchmark": 2.38
+    },
+    {
+      "month": "2016-08",
+      "strategy": 4.34,
+      "benchmark": 0.81
+    },
+    {
+      "month": "2016-09",
+      "strategy": 0.71,
+      "benchmark": -0.1
+    },
+    {
+      "month": "2016-10",
+      "strategy": -0.52,
+      "benchmark": -3.26
+    },
+    {
+      "month": "2016-11",
+      "strategy": 2.18,
+      "benchmark": 0.25
+    },
+    {
+      "month": "2016-12",
+      "strategy": 1.87,
+      "benchmark": 4.27
+    },
+    {
+      "month": "2017-01",
+      "strategy": 12.01,
+      "benchmark": 0.76
+    },
+    {
+      "month": "2017-02",
+      "strategy": 6.15,
+      "benchmark": 3.37
+    },
+    {
+      "month": "2017-03",
+      "strategy": 1.91,
+      "benchmark": 2.81
+    },
+    {
+      "month": "2017-04",
+      "strategy": 2.44,
+      "benchmark": 3.52
+    },
+    {
+      "month": "2017-05",
+      "strategy": 2.0,
+      "benchmark": 3.01
+    },
+    {
+      "month": "2017-06",
+      "strategy": 6.31,
+      "benchmark": -1.43
+    },
+    {
+      "month": "2017-07",
+      "strategy": -0.5,
+      "benchmark": 1.7
+    },
+    {
+      "month": "2017-08",
+      "strategy": -0.17,
+      "benchmark": -1.21
+    },
+    {
+      "month": "2017-09",
+      "strategy": 1.33,
+      "benchmark": 2.7
+    },
+    {
+      "month": "2017-10",
+      "strategy": 1.88,
+      "benchmark": 1.53
+    },
+    {
+      "month": "2017-11",
+      "strategy": 5.03,
+      "benchmark": 0.63
+    },
+    {
+      "month": "2017-12",
+      "strategy": 5.83,
+      "benchmark": 0.66
+    },
+    {
+      "month": "2018-01",
+      "strategy": -1.8,
+      "benchmark": -0.13
+    },
+    {
+      "month": "2018-02",
+      "strategy": -4.73,
+      "benchmark": -4.33
+    },
+    {
+      "month": "2018-03",
+      "strategy": -4.1,
+      "benchmark": -0.68
+    },
+    {
+      "month": "2018-04",
+      "strategy": -0.16,
+      "benchmark": 3.11
+    },
+    {
+      "month": "2018-05",
+      "strategy": 1.77,
+      "benchmark": -3.56
+    },
+    {
+      "month": "2018-06",
+      "strategy": 0.07,
+      "benchmark": 1.64
+    },
+    {
+      "month": "2018-07",
+      "strategy": 0.31,
+      "benchmark": 5.14
+    },
+    {
+      "month": "2018-08",
+      "strategy": 1.29,
+      "benchmark": -1.03
+    },
+    {
+      "month": "2018-09",
+      "strategy": 0.33,
+      "benchmark": 0.6
+    },
+    {
+      "month": "2018-10",
+      "strategy": -4.86,
+      "benchmark": -1.65
+    },
+    {
+      "month": "2018-11",
+      "strategy": -1.71,
+      "benchmark": -0.87
+    },
+    {
+      "month": "2018-12",
+      "strategy": 0.0,
+      "benchmark": -6.38
+    },
+    {
+      "month": "2019-01",
+      "strategy": 0.0,
+      "benchmark": 6.29
+    },
+    {
+      "month": "2019-02",
+      "strategy": 0.0,
+      "benchmark": 4.76
+    },
+    {
+      "month": "2019-03",
+      "strategy": 1.01,
+      "benchmark": 1.87
+    },
+    {
+      "month": "2019-04",
+      "strategy": 0.81,
+      "benchmark": 4.76
+    },
+    {
+      "month": "2019-05",
+      "strategy": -0.97,
+      "benchmark": -1.8
+    },
+    {
+      "month": "2019-06",
+      "strategy": 2.76,
+      "benchmark": 3.67
+    },
+    {
+      "month": "2019-07",
+      "strategy": 0.79,
+      "benchmark": 1.01
+    },
+    {
+      "month": "2019-08",
+      "strategy": 4.9,
+      "benchmark": 0.04
+    },
+    {
+      "month": "2019-09",
+      "strategy": 5.74,
+      "benchmark": 1.21
+    },
+    {
+      "month": "2019-10",
+      "strategy": 3.06,
+      "benchmark": 0.8
+    },
+    {
+      "month": "2019-11",
+      "strategy": 1.53,
+      "benchmark": 3.1
+    },
+    {
+      "month": "2019-12",
+      "strategy": 5.3,
+      "benchmark": 1.05
+    },
+    {
+      "month": "2020-01",
+      "strategy": 1.14,
+      "benchmark": 0.3
+    },
+    {
+      "month": "2020-02",
+      "strategy": -3.17,
+      "benchmark": -7.18
+    },
+    {
+      "month": "2020-03",
+      "strategy": -10.19,
+      "benchmark": -5.56
+    },
+    {
+      "month": "2020-04",
+      "strategy": -0.01,
+      "benchmark": 5.69
+    },
+    {
+      "month": "2020-05",
+      "strategy": 1.24,
+      "benchmark": 2.41
+    },
+    {
+      "month": "2020-06",
+      "strategy": -0.25,
+      "benchmark": 1.62
+    },
+    {
+      "month": "2020-07",
+      "strategy": 2.0,
+      "benchmark": -0.44
+    },
+    {
+      "month": "2020-08",
+      "strategy": 7.99,
+      "benchmark": 2.28
+    },
+    {
+      "month": "2020-09",
+      "strategy": 0.34,
+      "benchmark": 0.42
+    },
+    {
+      "month": "2020-10",
+      "strategy": -1.93,
+      "benchmark": -5.76
+    },
+    {
+      "month": "2020-11",
+      "strategy": -0.22,
+      "benchmark": 8.19
+    },
+    {
+      "month": "2020-12",
+      "strategy": 4.02,
+      "benchmark": 2.97
+    },
+    {
+      "month": "2021-01",
+      "strategy": -0.32,
+      "benchmark": -1.35
+    },
+    {
+      "month": "2021-02",
+      "strategy": 2.24,
+      "benchmark": 0.06
+    },
+    {
+      "month": "2021-03",
+      "strategy": 3.45,
+      "benchmark": 6.44
+    },
+    {
+      "month": "2021-04",
+      "strategy": 0.3,
+      "benchmark": 0.99
+    },
+    {
+      "month": "2021-05",
+      "strategy": 3.42,
+      "benchmark": 3.63
+    },
+    {
+      "month": "2021-06",
+      "strategy": 1.8,
+      "benchmark": 4.49
+    },
+    {
+      "month": "2021-07",
+      "strategy": 3.34,
+      "benchmark": 1.55
+    },
+    {
+      "month": "2021-08",
+      "strategy": -1.02,
+      "benchmark": 2.26
+    },
+    {
+      "month": "2021-09",
+      "strategy": -4.06,
+      "benchmark": -5.84
+    },
+    {
+      "month": "2021-10",
+      "strategy": 3.52,
+      "benchmark": 3.94
+    },
+    {
+      "month": "2021-11",
+      "strategy": 2.37,
+      "benchmark": -0.7
+    },
+    {
+      "month": "2021-12",
+      "strategy": 0.13,
+      "benchmark": 6.34
+    },
+    {
+      "month": "2022-01",
+      "strategy": -3.54,
+      "benchmark": -5.71
+    },
+    {
+      "month": "2022-02",
+      "strategy": -2.61,
+      "benchmark": -2.33
+    },
+    {
+      "month": "2022-03",
+      "strategy": -1.76,
+      "benchmark": 2.4
+    },
+    {
+      "month": "2022-04",
+      "strategy": -0.74,
+      "benchmark": 0.48
+    },
+    {
+      "month": "2022-05",
+      "strategy": 1.11,
+      "benchmark": -4.42
+    },
+    {
+      "month": "2022-06",
+      "strategy": -0.69,
+      "benchmark": -7.47
+    },
+    {
+      "month": "2022-07",
+      "strategy": 3.33,
+      "benchmark": 4.45
+    },
+    {
+      "month": "2022-08",
+      "strategy": 2.21,
+      "benchmark": -3.15
+    },
+    {
+      "month": "2022-09",
+      "strategy": -3.67,
+      "benchmark": -6.16
+    },
+    {
+      "month": "2022-10",
+      "strategy": -2.27,
+      "benchmark": 5.18
+    },
+    {
+      "month": "2022-11",
+      "strategy": 3.04,
+      "benchmark": 2.86
+    },
+    {
+      "month": "2022-12",
+      "strategy": -1.61,
+      "benchmark": -3.21
+    },
+    {
+      "month": "2023-01",
+      "strategy": 2.4,
+      "benchmark": 5.5
+    },
+    {
+      "month": "2023-02",
+      "strategy": 3.15,
+      "benchmark": -1.27
+    },
+    {
+      "month": "2023-03",
+      "strategy": -0.12,
+      "benchmark": 1.52
+    },
+    {
+      "month": "2023-04",
+      "strategy": -0.91,
+      "benchmark": 3.75
+    },
+    {
+      "month": "2023-05",
+      "strategy": -1.19,
+      "benchmark": -2.07
+    },
+    {
+      "month": "2023-06",
+      "strategy": -1.94,
+      "benchmark": 0.56
+    },
+    {
+      "month": "2023-07",
+      "strategy": 4.16,
+      "benchmark": 0.51
+    },
+    {
+      "month": "2023-08",
+      "strategy": -1.62,
+      "benchmark": -1.95
+    },
+    {
+      "month": "2023-09",
+      "strategy": 1.09,
+      "benchmark": -1.62
+    },
+    {
+      "month": "2023-10",
+      "strategy": 0.59,
+      "benchmark": -5.59
+    },
+    {
+      "month": "2023-11",
+      "strategy": -0.11,
+      "benchmark": 4.43
+    },
+    {
+      "month": "2023-12",
+      "strategy": 2.66,
+      "benchmark": 2.46
+    },
+    {
+      "month": "2024-01",
+      "strategy": 2.72,
+      "benchmark": 1.37
+    },
+    {
+      "month": "2024-02",
+      "strategy": 2.88,
+      "benchmark": 0.7
+    },
+    {
+      "month": "2024-03",
+      "strategy": 4.15,
+      "benchmark": 3.71
+    },
+    {
+      "month": "2024-04",
+      "strategy": 0.34,
+      "benchmark": -2.54
+    },
+    {
+      "month": "2024-05",
+      "strategy": 2.93,
+      "benchmark": 6.34
+    },
+    {
+      "month": "2024-06",
+      "strategy": 3.49,
+      "benchmark": -0.52
+    },
+    {
+      "month": "2024-07",
+      "strategy": -0.62,
+      "benchmark": 2.87
+    },
+    {
+      "month": "2024-08",
+      "strategy": -2.45,
+      "benchmark": 0.93
+    },
+    {
+      "month": "2024-09",
+      "strategy": -1.51,
+      "benchmark": -1.79
+    },
+    {
+      "month": "2024-10",
+      "strategy": -0.37,
+      "benchmark": -3.15
+    },
+    {
+      "month": "2024-11",
+      "strategy": 0.38,
+      "benchmark": -0.33
+    },
+    {
+      "month": "2024-12",
+      "strategy": 0.65,
+      "benchmark": -1.3
+    },
+    {
+      "month": "2025-01",
+      "strategy": 5.4,
+      "benchmark": 8.25
+    },
+    {
+      "month": "2025-02",
+      "strategy": 1.54,
+      "benchmark": 2.54
+    },
+    {
+      "month": "2025-03",
+      "strategy": 5.16,
+      "benchmark": -2.21
+    },
+    {
+      "month": "2025-04",
+      "strategy": -0.36,
+      "benchmark": -2.02
+    },
+    {
+      "month": "2025-05",
+      "strategy": 4.7,
+      "benchmark": 2.36
+    },
+    {
+      "month": "2025-06",
+      "strategy": 8.95,
+      "benchmark": -1.93
+    },
+    {
+      "month": "2025-07",
+      "strategy": 10.14,
+      "benchmark": -0.08
+    },
+    {
+      "month": "2025-08",
+      "strategy": -2.76,
+      "benchmark": 2.37
+    },
+    {
+      "month": "2025-09",
+      "strategy": -1.62,
+      "benchmark": -1.29
+    },
+    {
+      "month": "2025-10",
+      "strategy": 8.63,
+      "benchmark": 1.41
+    },
+    {
+      "month": "2025-11",
+      "strategy": -6.82,
+      "benchmark": 4.03
+    },
+    {
+      "month": "2025-12",
+      "strategy": -5.37,
+      "benchmark": 3.16
+    },
+    {
+      "month": "2026-01",
+      "strategy": 4.54,
+      "benchmark": 0.0
+    },
+    {
+      "month": "2026-02",
+      "strategy": 3.69,
+      "benchmark": 5.55
+    },
+    {
+      "month": "2026-03",
+      "strategy": 0.07,
+      "benchmark": -7.62
+    },
+    {
+      "month": "2026-04",
+      "strategy": 4.74,
+      "benchmark": 3.38
+    }
+  ]
+}

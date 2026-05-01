@@ -1,5 +1,6 @@
 import Link from "next/link";
 
+import { EmailCapture } from "@/components/email-capture";
 import { Faq } from "@/components/faq";
 import { Footer } from "@/components/footer";
 import { HeroChart } from "@/components/hero-chart";
@@ -52,24 +53,30 @@ function Hero() {
           </h1>
 
           <p className="mt-5 max-w-xl text-base leading-relaxed text-secondary sm:mt-7 sm:text-lg">
-            Algorithmische Börsensignale für Schweizer Privatanleger —
-            wissenschaftlich getestet, einfach umzusetzen. 5 Minuten pro
-            Signal. Ab CHF 49 im Monat.
+            <span className="font-medium text-navy">Kostenlos:</span>{" "}
+            Wöchentliche Markt-Signale + Strategie-Teardown für den
+            SPI Breakout.
           </p>
 
-          <div className="mt-7 flex flex-col gap-3 sm:mt-9 sm:flex-row">
-            <a
-              href="#preise"
-              className="inline-flex min-h-[48px] w-full items-center justify-center rounded-md bg-gold px-6 py-3.5 text-base font-medium text-white shadow-sm transition-colors hover:bg-gold-dark sm:w-auto sm:text-[15px]"
-            >
-              Jetzt starten — 30 Tage kostenlos
-            </a>
-            <a
-              href="#performance"
-              className="inline-flex min-h-[48px] w-full items-center justify-center rounded-md border border-navy/20 bg-transparent px-6 py-3.5 text-base font-medium text-navy transition-colors hover:border-navy hover:bg-navy/5 sm:w-auto sm:text-[15px]"
-            >
-              Performance ansehen
-            </a>
+          <div className="mt-7 sm:mt-9">
+            <EmailCapture
+              source="homepage"
+              ctaLabel="Kostenlos anmelden"
+              successText="Danke! Du erhältst die Markt-Signale und den Teardown in Kürze per Email."
+              className="max-w-xl"
+            />
+            <p className="mt-3 text-[12px] leading-snug text-muted">
+              Kein Spam. Abmeldung jederzeit. Du erhältst zusätzlich den
+              kostenlosen Strategie-Teardown.
+            </p>
+            <p className="mt-3 text-[13px] text-secondary">
+              <Link
+                href="/performance"
+                className="underline underline-offset-2 hover:text-navy"
+              >
+                Live-Performance ansehen →
+              </Link>
+            </p>
           </div>
         </div>
 
@@ -377,7 +384,7 @@ function Pricing() {
         "E-Mail-Signale (nach Börsenschluss)",
         "Performance-Übersicht YTD–10J",
       ],
-      cta: "Basis wählen",
+      cta: "Alle Signale freischalten",
       featured: false,
     },
     {
@@ -391,7 +398,7 @@ function Pricing() {
         "Fundamentaldaten je Signal (KGV, Dividende)",
         "Wöchentlicher Marktkommentar",
       ],
-      cta: "Plus wählen",
+      cta: "Alle Signale freischalten",
       featured: true,
     },
     {
@@ -406,7 +413,7 @@ function Pricing() {
         "Prioritäts-E-Mail-Support",
         "Zugang zu experimentellen Strategien",
       ],
-      cta: "Premium wählen",
+      cta: "Alle Signale freischalten",
       featured: false,
     },
   ];
@@ -416,7 +423,10 @@ function Pricing() {
       <div className="container py-12 sm:py-16 lg:py-28">
         <div className="mx-auto max-w-2xl text-center">
           <span className="eyebrow">Preise</span>
-          <h2 className="mt-5 font-serif text-[26px] leading-tight text-navy sm:mt-6 sm:text-[34px] lg:text-[44px]">
+          <p className="mt-5 text-[14px] uppercase tracking-[0.18em] text-gold">
+            Bereit für alle Signale in Echtzeit?
+          </p>
+          <h2 className="mt-3 font-serif text-[26px] leading-tight text-navy sm:text-[34px] lg:text-[44px]">
             Transparent. Fair.{" "}
             <span className="italic">Ohne versteckte Kosten.</span>
           </h2>

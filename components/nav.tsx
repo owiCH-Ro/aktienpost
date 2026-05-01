@@ -6,7 +6,7 @@ import { useEffect, useState } from "react";
 
 const links: Array<{ href: string; label: string }> = [
   { href: "/#strategien", label: "Strategien" },
-  { href: "/#performance", label: "Performance" },
+  { href: "/performance", label: "Performance" },
   { href: "/#preise", label: "Preise" },
   { href: "/blog", label: "Blog" },
   { href: "/kontakt", label: "Kontakt" },
